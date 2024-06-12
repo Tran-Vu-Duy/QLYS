@@ -30,3 +30,6 @@ D:\LTUD\Source\QLYSACH\QLYSACH\obj\Debug\QLYSACH.Properties.Resources.resources
 D:\LTUD\Source\QLYSACH\QLYSACH\obj\Debug\QLYSACH.csproj.GenerateResource.Cache
 D:\LTUD\Source\QLYSACH\QLYSACH\bin\Debug\QLYSACH.exe
 D:\LTUD\Source\QLYSACH\QLYSACH\bin\Debug\QLYSACH.pdb
+D:\codes\Duy\QLYS\QLYSACH\bin\Debug\QLYSACH.exe.config
+D:\codes\Duy\QLYS\QLYSACH\obj\Debug\QLYSACH.exe
+D:\codes\Duy\QLYS\QLYSACH\obj\Debug\QLYSACH.pdb

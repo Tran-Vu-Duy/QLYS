@@ -34,7 +34,7 @@ namespace QLYSACH
 
         private void label2_Click(object sender, EventArgs e)
         {
-
+            //hello
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
