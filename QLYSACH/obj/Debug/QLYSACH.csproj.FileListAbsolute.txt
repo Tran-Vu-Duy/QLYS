@@ -30,3 +30,15 @@ D:\LTUD\Source\QLYSACH\QLYSACH\obj\Debug\QLYSACH.Properties.Resources.resources
 D:\LTUD\Source\QLYSACH\QLYSACH\obj\Debug\QLYSACH.csproj.GenerateResource.Cache
 D:\LTUD\Source\QLYSACH\QLYSACH\bin\Debug\QLYSACH.exe
 D:\LTUD\Source\QLYSACH\QLYSACH\bin\Debug\QLYSACH.pdb
+D:\TMDT\QLYS\QLYSACH\bin\Debug\QLYSACH.exe.config
+D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.exe
+D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.pdb
+D:\TMDT\QLYS\QLYSACH\bin\Debug\QLYSACH.exe
+D:\TMDT\QLYS\QLYSACH\bin\Debug\QLYSACH.pdb
+D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.csprojResolveAssemblyReference.cache
+D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.frmDangKi.resources
+D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.frmDangNhap.resources
+D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.frmMenu.resources
+D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.Properties.Resources.resources
+D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.csproj.GenerateResource.Cache
+D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.frmQLyNhanVien.resources

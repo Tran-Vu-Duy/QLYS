@@ -51,18 +51,20 @@
             this.btBaoCao = new System.Windows.Forms.Button();
             this.BCTonKho = new System.Windows.Forms.Panel();
             this.btTonKho = new System.Windows.Forms.Button();
-            this.btDoanhThu = new System.Windows.Forms.Button();
             this.BCDoanhThu = new System.Windows.Forms.Panel();
+            this.btDoanhThu = new System.Windows.Forms.Button();
             this.MenuTaoBaoCao = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btTaoBaoCao = new System.Windows.Forms.Button();
             this.TBCHoaDon = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
             this.TBCDoanhThu = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
             this.MenuTaiKhoan = new System.Windows.Forms.Panel();
-            this.btTaiKhoan = new System.Windows.Forms.Button();
             this.TKDangXuat = new System.Windows.Forms.Panel();
             this.button9 = new System.Windows.Forms.Button();
+            this.TaiKhoan = new System.Windows.Forms.Panel();
+            this.btTaiKhoan = new System.Windows.Forms.Button();
             this.TKThongTin = new System.Windows.Forms.Panel();
             this.button8 = new System.Windows.Forms.Button();
             this.MenuTranstion = new System.Windows.Forms.Timer(this.components);
@@ -70,8 +72,6 @@
             this.BaoCaoTranstion = new System.Windows.Forms.Timer(this.components);
             this.TaiKhoanTranstion = new System.Windows.Forms.Timer(this.components);
             this.TaoBaoCaoTranstion = new System.Windows.Forms.Timer(this.components);
-            this.TaiKhoan = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.pnlHearder.SuspendLayout();
             this.SideBar.SuspendLayout();
             this.menuQuanLy.SuspendLayout();
@@ -86,13 +86,13 @@
             this.BCTonKho.SuspendLayout();
             this.BCDoanhThu.SuspendLayout();
             this.MenuTaoBaoCao.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.TBCHoaDon.SuspendLayout();
             this.TBCDoanhThu.SuspendLayout();
             this.MenuTaiKhoan.SuspendLayout();
             this.TKDangXuat.SuspendLayout();
-            this.TKThongTin.SuspendLayout();
             this.TaiKhoan.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.TKThongTin.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlHearder
@@ -362,6 +362,14 @@
             this.btTonKho.Text = "     Tồn kho";
             this.btTonKho.UseVisualStyleBackColor = false;
             // 
+            // BCDoanhThu
+            // 
+            this.BCDoanhThu.Controls.Add(this.btDoanhThu);
+            this.BCDoanhThu.Location = new System.Drawing.Point(3, 44);
+            this.BCDoanhThu.Name = "BCDoanhThu";
+            this.BCDoanhThu.Size = new System.Drawing.Size(184, 35);
+            this.BCDoanhThu.TabIndex = 4;
+            // 
             // btDoanhThu
             // 
             this.btDoanhThu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
@@ -378,14 +386,6 @@
             this.btDoanhThu.Text = "         Doanh thu";
             this.btDoanhThu.UseVisualStyleBackColor = false;
             // 
-            // BCDoanhThu
-            // 
-            this.BCDoanhThu.Controls.Add(this.btDoanhThu);
-            this.BCDoanhThu.Location = new System.Drawing.Point(3, 44);
-            this.BCDoanhThu.Name = "BCDoanhThu";
-            this.BCDoanhThu.Size = new System.Drawing.Size(184, 35);
-            this.BCDoanhThu.TabIndex = 4;
-            // 
             // MenuTaoBaoCao
             // 
             this.MenuTaoBaoCao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
@@ -398,21 +398,13 @@
             this.MenuTaoBaoCao.Size = new System.Drawing.Size(200, 38);
             this.MenuTaoBaoCao.TabIndex = 4;
             // 
-            // button6
+            // panel2
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button6.Image = global::QLYSACH.Properties.Resources.icons8_bill_30;
-            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(0, 0);
-            this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.button6.Size = new System.Drawing.Size(184, 38);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "       Hoá đơn";
-            this.button6.UseVisualStyleBackColor = false;
+            this.panel2.Controls.Add(this.btTaoBaoCao);
+            this.panel2.Location = new System.Drawing.Point(3, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(184, 38);
+            this.panel2.TabIndex = 5;
             // 
             // btTaoBaoCao
             // 
@@ -437,6 +429,22 @@
             this.TBCHoaDon.Name = "TBCHoaDon";
             this.TBCHoaDon.Size = new System.Drawing.Size(184, 38);
             this.TBCHoaDon.TabIndex = 4;
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.button6.Image = global::QLYSACH.Properties.Resources.icons8_bill_30;
+            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button6.Location = new System.Drawing.Point(0, 0);
+            this.button6.Name = "button6";
+            this.button6.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.button6.Size = new System.Drawing.Size(184, 38);
+            this.button6.TabIndex = 3;
+            this.button6.Text = "       Hoá đơn";
+            this.button6.UseVisualStyleBackColor = false;
             // 
             // TBCDoanhThu
             // 
@@ -473,22 +481,6 @@
             this.MenuTaiKhoan.Size = new System.Drawing.Size(200, 50);
             this.MenuTaiKhoan.TabIndex = 4;
             // 
-            // btTaiKhoan
-            // 
-            this.btTaiKhoan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.btTaiKhoan.FlatAppearance.BorderSize = 0;
-            this.btTaiKhoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btTaiKhoan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btTaiKhoan.Image = global::QLYSACH.Properties.Resources.icons8_account_24;
-            this.btTaiKhoan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btTaiKhoan.Location = new System.Drawing.Point(0, 0);
-            this.btTaiKhoan.Name = "btTaiKhoan";
-            this.btTaiKhoan.Size = new System.Drawing.Size(184, 38);
-            this.btTaiKhoan.TabIndex = 3;
-            this.btTaiKhoan.Text = "       TÀI KHOẢN";
-            this.btTaiKhoan.UseVisualStyleBackColor = false;
-            this.btTaiKhoan.Click += new System.EventHandler(this.btTaiKhoan_Click);
-            // 
             // TKDangXuat
             // 
             this.TKDangXuat.Controls.Add(this.button9);
@@ -513,6 +505,30 @@
             this.button9.TabIndex = 3;
             this.button9.Text = "         Đăng xuất";
             this.button9.UseVisualStyleBackColor = false;
+            // 
+            // TaiKhoan
+            // 
+            this.TaiKhoan.Controls.Add(this.btTaiKhoan);
+            this.TaiKhoan.Location = new System.Drawing.Point(3, 3);
+            this.TaiKhoan.Name = "TaiKhoan";
+            this.TaiKhoan.Size = new System.Drawing.Size(184, 38);
+            this.TaiKhoan.TabIndex = 4;
+            // 
+            // btTaiKhoan
+            // 
+            this.btTaiKhoan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.btTaiKhoan.FlatAppearance.BorderSize = 0;
+            this.btTaiKhoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btTaiKhoan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btTaiKhoan.Image = global::QLYSACH.Properties.Resources.icons8_account_24;
+            this.btTaiKhoan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btTaiKhoan.Location = new System.Drawing.Point(0, 0);
+            this.btTaiKhoan.Name = "btTaiKhoan";
+            this.btTaiKhoan.Size = new System.Drawing.Size(184, 38);
+            this.btTaiKhoan.TabIndex = 3;
+            this.btTaiKhoan.Text = "       TÀI KHOẢN";
+            this.btTaiKhoan.UseVisualStyleBackColor = false;
+            this.btTaiKhoan.Click += new System.EventHandler(this.btTaiKhoan_Click);
             // 
             // TKThongTin
             // 
@@ -563,22 +579,6 @@
             this.TaoBaoCaoTranstion.Interval = 10;
             this.TaoBaoCaoTranstion.Tick += new System.EventHandler(this.TaoBaoCaoTranstion_Tick);
             // 
-            // TaiKhoan
-            // 
-            this.TaiKhoan.Controls.Add(this.btTaiKhoan);
-            this.TaiKhoan.Location = new System.Drawing.Point(3, 3);
-            this.TaiKhoan.Name = "TaiKhoan";
-            this.TaiKhoan.Size = new System.Drawing.Size(184, 38);
-            this.TaiKhoan.TabIndex = 4;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btTaoBaoCao);
-            this.panel2.Location = new System.Drawing.Point(3, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(184, 38);
-            this.panel2.TabIndex = 5;
-            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -609,13 +609,13 @@
             this.BCTonKho.ResumeLayout(false);
             this.BCDoanhThu.ResumeLayout(false);
             this.MenuTaoBaoCao.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.TBCHoaDon.ResumeLayout(false);
             this.TBCDoanhThu.ResumeLayout(false);
             this.MenuTaiKhoan.ResumeLayout(false);
             this.TKDangXuat.ResumeLayout(false);
-            this.TKThongTin.ResumeLayout(false);
             this.TaiKhoan.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.TKThongTin.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
