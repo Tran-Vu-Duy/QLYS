@@ -30,6 +30,7 @@ D:\LTUD\Source\QLYSACH\QLYSACH\obj\Debug\QLYSACH.Properties.Resources.resources
 D:\LTUD\Source\QLYSACH\QLYSACH\obj\Debug\QLYSACH.csproj.GenerateResource.Cache
 D:\LTUD\Source\QLYSACH\QLYSACH\bin\Debug\QLYSACH.exe
 D:\LTUD\Source\QLYSACH\QLYSACH\bin\Debug\QLYSACH.pdb
+<<<<<<< HEAD
 D:\TMDT\QLYS\QLYSACH\bin\Debug\QLYSACH.exe.config
 D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.exe
 D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.pdb
@@ -42,3 +43,8 @@ D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.frmMenu.resources
 D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.Properties.Resources.resources
 D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.csproj.GenerateResource.Cache
 D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.frmQLyNhanVien.resources
+=======
+D:\codes\Duy\QLYS\QLYSACH\bin\Debug\QLYSACH.exe.config
+D:\codes\Duy\QLYS\QLYSACH\obj\Debug\QLYSACH.exe
+D:\codes\Duy\QLYS\QLYSACH\obj\Debug\QLYSACH.pdb
+>>>>>>> 5b1639d03adcfa272db988f11c9e8086f4688a10

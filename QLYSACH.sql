@@ -28,7 +28,9 @@ CREATE TABLE TacGia (
     QueQuan NVARCHAR(250),
     NgaySinh DATE,
     NgayMat DATE,
-    TieuSu NVARCHAR(500)
+    TieuSu NVARCHAR(500),
+    GioiTinh NVARCHAR(10),
+    ThanhPho NVARCHAR(100)
 );
 
 -- Tạo bảng Sach
@@ -51,10 +53,12 @@ CREATE TABLE Sach (
 CREATE TABLE NhanVien (
     MaNV NVARCHAR(50) NOT NULL PRIMARY KEY,
     TenNV NVARCHAR(250) NOT NULL,
-    DiaChiNV NVARCHAR(250),
+    DiaChi NVARCHAR(250),
+    ThanhPho NVARCHAR(100),
     SDTNV INT NOT NULL,
     EmailNV NVARCHAR(150) NOT NULL,
     NgaySinh DATE,
+    GioiTinh NVARCHAR(10),
     ChucVu NVARCHAR(100)
 );
 
@@ -62,10 +66,12 @@ CREATE TABLE NhanVien (
 CREATE TABLE KhachHang (
     MaKH NVARCHAR(50) NOT NULL PRIMARY KEY,
     TenKH NVARCHAR(250) NOT NULL,
-    DiaChiKH NVARCHAR(250),
+    DiaChi NVARCHAR(250),
+    ThanhPho NVARCHAR(100),
     SDTKH INT NOT NULL,
     EmailKH NVARCHAR(150) NOT NULL,
-    NgaySinh DATE
+    NgaySinh DATE,
+    GioiTinh NVARCHAR(10)
 );
 
 -- Tạo bảng HoaDon
@@ -99,7 +105,7 @@ CREATE TABLE NguoiDung (
     MatKhau NVARCHAR(256) NOT NULL,
     HoTen NVARCHAR(250),
     Email NVARCHAR(150),
-	Nhom NVARCHAR(150) NOT NULL
+    Nhom NVARCHAR(150) NOT NULL
 );
 
 -- Tạo bảng ChucNang
@@ -121,18 +127,18 @@ CREATE TABLE PhanQuyen (
 -- Nhập Dữ Liệu Vào
 
 -- Dữ liệu cho bảng NguoiDung
-INSERT INTO NguoiDung (TenDangNhap, MatKhau, HoTen, Email,Nhom) 
+INSERT INTO NguoiDung (TenDangNhap, MatKhau, HoTen, Email, Nhom) 
 VALUES 
-(N'admin', N'admin123', N'Người Quản Trị', N'admin@example.com','admin'),
-(N'user1', N'user1', N'Người Dùng Một', N'user1@example.com','user'),
-(N'user2', N'user2', N'Người Dùng Hai', N'user2@example.com','user');
+(N'admin', N'admin123', N'Người Quản Trị', N'admin@example.com', 'admin'),
+(N'user1', N'user1', N'Người Dùng Một', N'user1@example.com', 'user'),
+(N'user2', N'user2', N'Người Dùng Hai', N'user2@example.com', 'user');
 
 -- Dữ liệu cho bảng ChucNang
 INSERT INTO ChucNang (TenChucNang, MoTa) 
 VALUES 
 (N'Đăng nhập', N'Người dùng đăng nhập vào hệ thống'),
 (N'Đăng xuất', N'Người dùng thoát vào hệ thống'),
-(N'Đổi mật khẩu ', N'Người dùng đổi mật khẩu của họ'),
+(N'Đổi mật khẩu', N'Người dùng đổi mật khẩu của họ'),
 (N'Quản lý danh mục', N'Người dùng quản lý danh mục sách'),
 (N'Xem bìa sách', N'Người dùng xem bìa của quyển sách'),
 (N'Xem chi tiết sách', N'Người dùng xem chi tiết sách'),
@@ -166,6 +172,7 @@ VALUES
 (3, 5),
 (3, 6),
 (3, 10);
+
 -- Dữ liệu cho bảng TheLoai
 INSERT INTO TheLoai (MaLoai, TenLoai) 
 VALUES 
@@ -181,39 +188,37 @@ VALUES
 (N'NXB002', N'NXB Trẻ', N'456 Đường XYZ, TP.HCM', 987654321, N'nxbtre@example.com');
 
 -- Dữ liệu cho bảng TacGia
-INSERT INTO TacGia (MaTG, TenTG, QueQuan, NgaySinh, NgayMat, TieuSu) 
+INSERT INTO TacGia (MaTG, TenTG, QueQuan, NgaySinh, NgayMat, TieuSu, GioiTinh, ThanhPho) 
 VALUES 
-(N'TG001', N'Nguyễn Nhật Ánh', N'Quảng Nam', '1955-06-01', NULL, N'Tác giả nổi tiếng với các tác phẩm dành cho thanh thiếu niên.'),
-(N'TG002', N'J.K. Rowling', N'Yate, Anh', '1965-07-31', NULL, N'Tác giả của loạt truyện Harry Potter.');
+(N'TG001', N'Nguyễn Nhật Ánh', N'Quảng Nam', '1955-06-01', NULL, N'Tác giả nổi tiếng với các tác phẩm dành cho thanh thiếu niên.', 'Nam', 'Hà Nội'),
+(N'TG002', N'J.K. Rowling', N'Yate, Anh', '1965-07-31', NULL, N'Tác giả của loạt truyện Harry Potter.', 'Nữ', 'Yate');
 
 -- Dữ liệu cho bảng Sach
 INSERT INTO Sach (MaSach, TenSach, MaNXB, MaTG, GiaBan, GiaNhap, MoTa, SoLuong, MaLoai) 
 VALUES 
-(N'S001', N'Harry Potter và Hòn Đá Phù Thủy', N'NXB001', N'TG002', 150000, 120000, N'Tập đầu tiên trong loạt truyện Harry Potter.', 100, N'TL001'),
-(N'S002', N'Cho Tôi Xin Một Vé Đi Tuổi Thơ', N'NXB002', N'TG001', 60000, 45000, N'Một tác phẩm nổi tiếng của Nguyễn Nhật Ánh.', 200, N'TL002'),
-(N'S003', N'Lịch Sử Việt Nam', N'NXB001', N'TG001', 180000, 150000, N'Cuốn sách về lịch sử Việt Nam.', 50, N'TL004');
+(N'S001', N'Cho tôi xin một vé đi tuổi thơ', N'NXB001', N'TG001', 50000, 30000, N'Tác phẩm nổi tiếng của Nguyễn Nhật Ánh', 100, N'TL002'),
+(N'S002', N'Harry Potter và Hòn đá phù thủy', N'NXB002', N'TG002', 100000, 70000, N'Tập đầu tiên trong loạt truyện Harry Potter', 150, N'TL001');
 
 -- Dữ liệu cho bảng NhanVien
-INSERT INTO NhanVien (MaNV, TenNV, DiaChiNV, SDTNV, EmailNV) 
+INSERT INTO NhanVien (MaNV, TenNV, DiaChi, ThanhPho, SDTNV, EmailNV, NgaySinh, GioiTinh, ChucVu) 
 VALUES 
-(N'NV001', N'Nguyễn Văn A', N'123 Đường ABC, Hà Nội', 123456789, N'nva@example.com'),
-(N'NV002', N'Trần Thị B', N'456 Đường XYZ, TP.HCM', 987654321, N'ttb@example.com');
+(N'NV001', N'Nguyễn Văn A', N'123 Đường ABC', N'Hà Nội', 123456789, N'nva@example.com', '1980-01-01', N'Nam', N'Quản lý'),
+(N'NV002', N'Trần Thị B', N'456 Đường XYZ', N'TP.HCM', 987654321, N'ttb@example.com', '1990-02-02', N'Nữ', N'Nhân viên bán hàng');
 
 -- Dữ liệu cho bảng KhachHang
-INSERT INTO KhachHang (MaKH, TenKH, DiaChiKH, SDTKH, EmailKH) 
+INSERT INTO KhachHang (MaKH, TenKH, DiaChi, ThanhPho, SDTKH, EmailKH, NgaySinh, GioiTinh) 
 VALUES 
-(N'KH001', N'Lê Văn C', N'789 Đường DEF, Đà Nẵng', 912345678, N'lvc@example.com'),
-(N'KH002', N'Phạm Thị D', N'321 Đường GHI, Hải Phòng', 908765432, N'ptd@example.com');
+(N'KH001', N'Phạm Văn C', N'789 Đường QWE', N'Đà Nẵng', 123123123, N'pvc@example.com', '2000-03-03', N'Nam'),
+(N'KH002', N'Lê Thị D', N'321 Đường RTY', N'Hải Phòng', 321321321, N'ltd@example.com', '1995-04-04', N'Nữ');
 
 -- Dữ liệu cho bảng HoaDon
 INSERT INTO HoaDon (MaHD, MaNV, MaKH, NgayLapHD, TongTien) 
 VALUES 
-(N'HD001', N'NV001', N'KH001', '2023-05-01', 210000),
-(N'HD002', N'NV002', N'KH002', '2023-06-15', 60000);
+(N'HD001', N'NV001', N'KH001', '2023-01-01', 50000),
+(N'HD002', N'NV002', N'KH002', '2023-01-02', 100000);
 
--- Dữ liệu cho bảng CTHD
+-- Dữ liệu cho bảng CTHD (ChiTietHoaDon)
 INSERT INTO CTHD (MaCTHD, MaHD, MaSach, DonGia, SoLuong, GiamGia, ThanhTien) 
 VALUES 
-(N'CTHD001', N'HD001', N'S001', 150000, 1, 0, 150000),
-(N'CTHD002', N'HD001', N'S003', 180000, 1, 20000, 160000), 
-(N'CTHD003', N'HD002', N'S002', 60000, 1, 0, 60000);
+(N'CTHD001', N'HD001', N'S001', 50000, 1, 0, 50000),
+(N'CTHD002', N'HD002', N'S002', 100000, 1, 0, 100000);
