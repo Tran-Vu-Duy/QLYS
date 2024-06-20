@@ -61,8 +61,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.btnLuu = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnLuu = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
@@ -283,9 +283,9 @@
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(53, 12);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 22);
+            this.label5.Size = new System.Drawing.Size(40, 22);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Mã NV";
+            this.label5.Text = "Mã ";
             // 
             // txtMa
             // 
@@ -303,9 +303,9 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(53, 89);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(142, 22);
+            this.label4.Size = new System.Drawing.Size(70, 22);
             this.label4.TabIndex = 1;
-            this.label4.Text = "Tên Nhân Viên ";
+            this.label4.Text = "Họ Tên";
             // 
             // txtTP
             // 
@@ -447,6 +447,17 @@
             this.label12.TabIndex = 25;
             this.label12.Text = "Thêm";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(20, 61);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(213, 38);
+            this.label10.TabIndex = 19;
+            this.label10.Text = " BEANOBLE ";
+            // 
             // btnLuu
             // 
             this.btnLuu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
@@ -461,17 +472,6 @@
             this.btnLuu.TabIndex = 15;
             this.btnLuu.UseVisualStyleBackColor = false;
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(20, 61);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(213, 38);
-            this.label10.TabIndex = 19;
-            this.label10.Text = " BEANOBLE ";
             // 
             // btnThem
             // 
