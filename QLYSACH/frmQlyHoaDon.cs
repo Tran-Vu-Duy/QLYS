@@ -25,6 +25,7 @@ namespace QLYSACH
             txtTong.Clear();
             txtMaHD.Focus();
         }
+        //Hllo
         private void ShowHoaDon()
         {
             DataTable dthoadon = new DataTable();

@@ -49,3 +49,6 @@ D:\codes\Duy\QLYS\QLYSACH\obj\Debug\QLYSACH.exe
 D:\codes\Duy\QLYS\QLYSACH\obj\Debug\QLYSACH.pdb
 >>>>>>> 5b1639d03adcfa272db988f11c9e8086f4688a10
 D:\TMDT\QLYS\QLYSACH\obj\Debug\QLYSACH.frmQlyHoaDon.resources
+D:\QLySach\QLYS\QLYSACH\bin\Debug\QLYSACH.exe.config
+D:\QLySach\QLYS\QLYSACH\obj\Debug\QLYSACH.exe
+D:\QLySach\QLYS\QLYSACH\obj\Debug\QLYSACH.pdb
