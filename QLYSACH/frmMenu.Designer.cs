@@ -103,7 +103,7 @@
             this.pnlHearder.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHearder.Location = new System.Drawing.Point(0, 0);
             this.pnlHearder.Name = "pnlHearder";
-            this.pnlHearder.Size = new System.Drawing.Size(1074, 59);
+            this.pnlHearder.Size = new System.Drawing.Size(1924, 59);
             this.pnlHearder.TabIndex = 0;
             // 
             // btHome
@@ -141,7 +141,7 @@
             this.SideBar.Controls.Add(this.MenuTaiKhoan);
             this.SideBar.Location = new System.Drawing.Point(0, 59);
             this.SideBar.Name = "SideBar";
-            this.SideBar.Size = new System.Drawing.Size(233, 474);
+            this.SideBar.Size = new System.Drawing.Size(233, 800);
             this.SideBar.TabIndex = 2;
             // 
             // menuQuanLy
@@ -155,7 +155,7 @@
             this.menuQuanLy.Controls.Add(this.QLSach);
             this.menuQuanLy.Location = new System.Drawing.Point(3, 3);
             this.menuQuanLy.Name = "menuQuanLy";
-            this.menuQuanLy.Size = new System.Drawing.Size(200, 41);
+            this.menuQuanLy.Size = new System.Drawing.Size(200, 265);
             this.menuQuanLy.TabIndex = 5;
             // 
             // panel1
@@ -206,6 +206,7 @@
             this.btNhanVien.TabIndex = 3;
             this.btNhanVien.Text = "       Nhân viên";
             this.btNhanVien.UseVisualStyleBackColor = false;
+            this.btNhanVien.Click += new System.EventHandler(this.btNhanVien_Click);
             // 
             // QLKhachHang
             // 
@@ -230,6 +231,7 @@
             this.btKhachHang.TabIndex = 3;
             this.btKhachHang.Text = "         Khách hàng";
             this.btKhachHang.UseVisualStyleBackColor = false;
+            this.btKhachHang.Click += new System.EventHandler(this.btKhachHang_Click);
             // 
             // QLHoaDon
             // 
@@ -254,6 +256,7 @@
             this.btHoaDon.TabIndex = 3;
             this.btHoaDon.Text = "    Hoá đơn";
             this.btHoaDon.UseVisualStyleBackColor = false;
+            this.btHoaDon.Click += new System.EventHandler(this.btHoaDon_Click_1);
             // 
             // QLTheLoai
             // 
@@ -271,7 +274,7 @@
             this.btTheLoai.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btTheLoai.Image = global::QLYSACH.Properties.Resources.icons8_opened_folder_24;
             this.btTheLoai.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btTheLoai.Location = new System.Drawing.Point(0, 0);
+            this.btTheLoai.Location = new System.Drawing.Point(5, 0);
             this.btTheLoai.Name = "btTheLoai";
             this.btTheLoai.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.btTheLoai.Size = new System.Drawing.Size(184, 35);
@@ -309,7 +312,7 @@
             this.MenuBaoCao.Controls.Add(this.panel4);
             this.MenuBaoCao.Controls.Add(this.BCTonKho);
             this.MenuBaoCao.Controls.Add(this.BCDoanhThu);
-            this.MenuBaoCao.Location = new System.Drawing.Point(3, 50);
+            this.MenuBaoCao.Location = new System.Drawing.Point(3, 274);
             this.MenuBaoCao.Name = "MenuBaoCao";
             this.MenuBaoCao.Size = new System.Drawing.Size(200, 39);
             this.MenuBaoCao.TabIndex = 5;
@@ -393,7 +396,7 @@
             this.MenuTaoBaoCao.Controls.Add(this.panel2);
             this.MenuTaoBaoCao.Controls.Add(this.TBCHoaDon);
             this.MenuTaoBaoCao.Controls.Add(this.TBCDoanhThu);
-            this.MenuTaoBaoCao.Location = new System.Drawing.Point(3, 95);
+            this.MenuTaoBaoCao.Location = new System.Drawing.Point(3, 319);
             this.MenuTaoBaoCao.Name = "MenuTaoBaoCao";
             this.MenuTaoBaoCao.Size = new System.Drawing.Size(200, 38);
             this.MenuTaoBaoCao.TabIndex = 4;
@@ -476,7 +479,7 @@
             this.MenuTaiKhoan.Controls.Add(this.TKDangXuat);
             this.MenuTaiKhoan.Controls.Add(this.TaiKhoan);
             this.MenuTaiKhoan.Controls.Add(this.TKThongTin);
-            this.MenuTaiKhoan.Location = new System.Drawing.Point(3, 139);
+            this.MenuTaiKhoan.Location = new System.Drawing.Point(3, 363);
             this.MenuTaiKhoan.Name = "MenuTaiKhoan";
             this.MenuTaiKhoan.Size = new System.Drawing.Size(200, 50);
             this.MenuTaiKhoan.TabIndex = 4;
@@ -583,7 +586,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1074, 533);
+            this.ClientSize = new System.Drawing.Size(1924, 753);
             this.Controls.Add(this.SideBar);
             this.Controls.Add(this.pnlHearder);
             this.DoubleBuffered = true;

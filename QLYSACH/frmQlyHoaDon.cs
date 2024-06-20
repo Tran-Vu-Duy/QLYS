@@ -168,10 +168,16 @@ namespace QLYSACH
 
         private void frmQlyHoaDon_Load(object sender, EventArgs e)
         {
+            this.ControlBox = false;
             panelTT.Enabled = false;
             ShowHoaDon();
             string sql = "SELECT * FROM NHANVIEN";
             LopHamXuLy.FillComboBox(sql, "MANV", "TENNV", cboNV);
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -136,7 +136,7 @@ namespace QLYSACH
             }
             if (txtTP.Text == "")
             {
-                MessageBox.Show("Vui lòng nhập địa chỉ nhân viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập thành phố nhân viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtTP.Focus();
                 return false;
             }
@@ -302,13 +302,18 @@ namespace QLYSACH
 
         private void QLyNhanVien_Load(object sender, EventArgs e)
         {
+            this.ControlBox = false;
             panelTT.Enabled = false;
+            btnHuy.Enabled = false;
+            btnLuu.Enabled = false;
             ShowNhanVien();
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
             panelTT.Enabled = true;
+            btnLuu.Enabled = true;
+            btnHuy.Enabled = true;
             Reset();
             btnXoa.Enabled = false;
             btnSua.Enabled = false;
@@ -354,6 +359,8 @@ namespace QLYSACH
             {
                 Sua();
             }
+            btnHuy.Enabled = false;
+            btnLuu.Enabled = false;
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -366,15 +373,15 @@ namespace QLYSACH
         {
             if (txtMa.Text == "")
             {
-                MessageBox.Show("BẠN CHƯA CHỌN MÃ CẦN XOÁ", "XÁC NHẬN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("BẠN CHƯA CHỌN NHÂN VIÊN CẦN XOÁ", "XÁC NHẬN", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             LopHamXuLy.Connect();
             string deleteSql = "DELETE FROM NHANVIEN WHERE MANV='" + txtMa.Text + "'";
-            if (MessageBox.Show("BẠN CÓ CHẮC CHẮN MUỐN XOÁ KHÔNG", "XÁC NHẬN XOÁ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show("BẠN CÓ CHẮC CHẮN MUỐN XOÁ NHÂN VIÊN " + txtTen.Text +" KHÔNG ?", "XÁC NHẬN XOÁ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 LopHamXuLy.runSql(deleteSql);
-                MessageBox.Show("ĐÃ XOÁ THÀNH CÔNG", "XÁC NHẬN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("ĐÃ XOÁ THÀNH CÔNG NHÂN VIÊN " + txtTen.Text , "XÁC NHẬN", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ShowNhanVien();
                 Reset();
             }
@@ -388,11 +395,10 @@ namespace QLYSACH
         private void btnHuy_Click(object sender, EventArgs e)
         {
             Reset();
-            panelTT.Enabled = false;
-            btnThem.Enabled = true;
-            btnXoa.Enabled = true;
+            btnHuy.Enabled = false;
+            btnLuu.Enabled = false;
             btnSua.Enabled = true;
-            txtMa.Enabled = true;
+            btnThem.Enabled = true;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -403,6 +409,8 @@ namespace QLYSACH
         private void btnSua_Click(object sender, EventArgs e)
         {
             panelTT.Enabled = true;
+            btnLuu.Enabled = true;
+            btnHuy.Enabled = true;
             txtMa.Enabled = false;
             btnThem.Enabled = false;
             btnXoa.Enabled = false;

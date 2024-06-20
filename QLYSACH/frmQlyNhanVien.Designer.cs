@@ -61,8 +61,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.btnLuu = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
@@ -447,17 +447,6 @@
             this.label12.TabIndex = 25;
             this.label12.Text = "Thêm";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(20, 61);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(213, 38);
-            this.label10.TabIndex = 19;
-            this.label10.Text = " BEANOBLE ";
-            // 
             // btnLuu
             // 
             this.btnLuu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
@@ -472,6 +461,17 @@
             this.btnLuu.TabIndex = 15;
             this.btnLuu.UseVisualStyleBackColor = false;
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(20, 61);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(213, 38);
+            this.label10.TabIndex = 19;
+            this.label10.Text = " BEANOBLE ";
             // 
             // btnThem
             // 
@@ -568,7 +568,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1365, 680);
+            this.ClientSize = new System.Drawing.Size(1372, 680);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
@@ -577,7 +577,7 @@
             this.Controls.Add(this.panelTT);
             this.Controls.Add(this.panelNV);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("MS Reference Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("MS Reference Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmQLyNhanVien";

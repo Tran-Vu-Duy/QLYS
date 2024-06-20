@@ -20,6 +20,9 @@ namespace QLYSACH
         {
 
         }
+        frmQLyNhanVien Nhanvien;
+        frmQlyKhachHang Khachhang;
+        frmQlyHoaDon Hoadon;
 //-------------------------------------------------
 //----------TẠO HAMBEGER MENU----------------------
 //-------------------------------------------------
@@ -266,6 +269,66 @@ namespace QLYSACH
             Form frmHD = new frmQlyHoaDon();
             frmHD.Show();
             this.Hide();
+        }
+
+        private void btNhanVien_Click(object sender, EventArgs e)
+        {
+            if (Nhanvien == null)
+            {
+                Nhanvien = new frmQLyNhanVien();
+                Nhanvien.FormClosed += Nhanvien_FormClosed;
+                Nhanvien.MdiParent = this;
+                Nhanvien.Dock = DockStyle.Fill;
+                Nhanvien.Show();
+            }
+            else
+            {
+                Nhanvien.Activate();
+            }
+        }
+        private void Nhanvien_FormClosed(object sender, EventArgs e)
+        {
+            Nhanvien = null;
+        }
+
+        private void btKhachHang_Click(object sender, EventArgs e)
+        {
+            if (Khachhang == null)
+            {
+                Khachhang = new frmQlyKhachHang();
+                Khachhang.FormClosed += Khachhang_FormClosed;
+                Khachhang.MdiParent = this;
+                Khachhang.Dock = DockStyle.Fill;
+                Khachhang.Show();
+            }
+            else
+            {
+                Nhanvien.Activate();
+            }
+        }
+        private void Khachhang_FormClosed(object sender, EventArgs e)
+        {
+            Khachhang = null;
+        }
+
+        private void btHoaDon_Click_1(object sender, EventArgs e)
+        {
+            if (Hoadon == null)
+            {
+                Hoadon = new frmQlyHoaDon();
+                Hoadon.FormClosed += Hoadon_FormClosed;
+                Hoadon.MdiParent = this;
+                Hoadon.Dock = DockStyle.Fill;
+                Hoadon.Show();
+            }
+            else
+            {
+                Hoadon.Activate();
+            }
+        }
+        private void Hoadon_FormClosed(object sender, EventArgs e)
+        {
+            Khachhang = null;
         }
     }
 }

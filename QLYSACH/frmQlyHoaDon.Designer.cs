@@ -53,13 +53,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panelTT = new System.Windows.Forms.Panel();
+            this.cboNV = new System.Windows.Forms.ComboBox();
             this.txtTong = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panelNV = new System.Windows.Forms.Panel();
             this.dtgvHD = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.cboNV = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.panelTT.SuspendLayout();
             this.panelNV.SuspendLayout();
@@ -250,6 +250,7 @@
             this.btnThoat.Size = new System.Drawing.Size(83, 54);
             this.btnThoat.TabIndex = 18;
             this.btnThoat.UseVisualStyleBackColor = false;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // btnSearch
             // 
@@ -372,6 +373,15 @@
             this.panelTT.Size = new System.Drawing.Size(423, 524);
             this.panelTT.TabIndex = 23;
             // 
+            // cboNV
+            // 
+            this.cboNV.Font = new System.Drawing.Font("MS Reference Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboNV.FormattingEnabled = true;
+            this.cboNV.Location = new System.Drawing.Point(174, 58);
+            this.cboNV.Name = "cboNV";
+            this.cboNV.Size = new System.Drawing.Size(198, 40);
+            this.cboNV.TabIndex = 16;
+            // 
             // txtTong
             // 
             this.txtTong.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -432,15 +442,6 @@
             this.label1.Size = new System.Drawing.Size(292, 33);
             this.label1.TabIndex = 21;
             this.label1.Text = "QUẢN LÝ HOÁ ĐƠN";
-            // 
-            // cboNV
-            // 
-            this.cboNV.Font = new System.Drawing.Font("MS Reference Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboNV.FormattingEnabled = true;
-            this.cboNV.Location = new System.Drawing.Point(174, 58);
-            this.cboNV.Name = "cboNV";
-            this.cboNV.Size = new System.Drawing.Size(198, 40);
-            this.cboNV.TabIndex = 16;
             // 
             // frmQlyHoaDon
             // 
