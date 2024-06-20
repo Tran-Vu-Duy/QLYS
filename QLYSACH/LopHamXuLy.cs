@@ -115,14 +115,14 @@ namespace QLYSACH
             return ma;
         }
 
-        public static void FillComboBoxTK(string sql, string nhom, ComboBox cbo)
+        public static void FillComboBoxTK(string sql, string ma,string ten, ComboBox cbo)
         {
             SqlDataAdapter da = new SqlDataAdapter(sql, conn);
             DataTable dt = new DataTable();
             da.Fill(dt);
             cbo.DataSource = dt;
-            cbo.ValueMember = nhom;
-            cbo.DisplayMember = nhom;
+            cbo.ValueMember = ma;
+            cbo.DisplayMember = ten;
         }
 
         // Phương thức để thực hiện truy vấn không trả về kết quả

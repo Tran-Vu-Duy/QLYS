@@ -260,5 +260,12 @@ namespace QLYSACH
             get { return TKDangXuat; }
             set { TKDangXuat = value; }
         }
+
+        private void btHoaDon_Click(object sender, EventArgs e)
+        {
+            Form frmHD = new frmQlyHoaDon();
+            frmHD.Show();
+            this.Hide();
+        }
     }
 }

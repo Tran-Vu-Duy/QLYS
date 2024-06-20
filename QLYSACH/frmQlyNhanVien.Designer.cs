@@ -32,6 +32,7 @@
             this.panelNV = new System.Windows.Forms.Panel();
             this.dtgvNV = new System.Windows.Forms.DataGridView();
             this.panelTT = new System.Windows.Forms.Panel();
+            this.txtNSinh = new System.Windows.Forms.MaskedTextBox();
             this.rdNam = new System.Windows.Forms.RadioButton();
             this.rdNu = new System.Windows.Forms.RadioButton();
             this.label16 = new System.Windows.Forms.Label();
@@ -42,11 +43,13 @@
             this.txtSDT = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtTen = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtMa = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.txtTP = new System.Windows.Forms.TextBox();
             this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -66,9 +69,6 @@
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.txtTP = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.txtNSinh = new System.Windows.Forms.MaskedTextBox();
             this.panelNV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvNV)).BeginInit();
             this.panelTT.SuspendLayout();
@@ -133,6 +133,15 @@
             this.panelTT.Size = new System.Drawing.Size(423, 524);
             this.panelTT.TabIndex = 13;
             this.panelTT.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTT_Paint);
+            // 
+            // txtNSinh
+            // 
+            this.txtNSinh.Font = new System.Drawing.Font("MS Reference Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNSinh.Location = new System.Drawing.Point(57, 468);
+            this.txtNSinh.Mask = "00/00/0000";
+            this.txtNSinh.Name = "txtNSinh";
+            this.txtNSinh.Size = new System.Drawing.Size(336, 35);
+            this.txtNSinh.TabIndex = 12;
             // 
             // rdNam
             // 
@@ -238,6 +247,16 @@
             this.txtEmail.Size = new System.Drawing.Size(336, 36);
             this.txtEmail.TabIndex = 10;
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.Color.White;
+            this.label19.Location = new System.Drawing.Point(259, 203);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(100, 22);
+            this.label19.TabIndex = 5;
+            this.label19.Text = "Thành Phố";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -264,9 +283,9 @@
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(53, 12);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 22);
+            this.label5.Size = new System.Drawing.Size(65, 22);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Mã ";
+            this.label5.Text = "Mã NV";
             // 
             // txtMa
             // 
@@ -287,6 +306,16 @@
             this.label4.Size = new System.Drawing.Size(142, 22);
             this.label4.TabIndex = 1;
             this.label4.Text = "Tên Nhân Viên ";
+            // 
+            // txtTP
+            // 
+            this.txtTP.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTP.Font = new System.Drawing.Font("MS Reference Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTP.Location = new System.Drawing.Point(263, 237);
+            this.txtTP.Multiline = true;
+            this.txtTP.Name = "txtTP";
+            this.txtTP.Size = new System.Drawing.Size(130, 36);
+            this.txtTP.TabIndex = 9;
             // 
             // txtDiaChi
             // 
@@ -533,35 +562,6 @@
             this.btnSearch.TabIndex = 2;
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // txtTP
-            // 
-            this.txtTP.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTP.Font = new System.Drawing.Font("MS Reference Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTP.Location = new System.Drawing.Point(263, 237);
-            this.txtTP.Multiline = true;
-            this.txtTP.Name = "txtTP";
-            this.txtTP.Size = new System.Drawing.Size(130, 36);
-            this.txtTP.TabIndex = 9;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(259, 203);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(100, 22);
-            this.label19.TabIndex = 5;
-            this.label19.Text = "Thành Phố";
-            // 
-            // txtNSinh
-            // 
-            this.txtNSinh.Font = new System.Drawing.Font("MS Reference Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNSinh.Location = new System.Drawing.Point(57, 468);
-            this.txtNSinh.Mask = "00/00/0000";
-            this.txtNSinh.Name = "txtNSinh";
-            this.txtNSinh.Size = new System.Drawing.Size(336, 35);
-            this.txtNSinh.TabIndex = 12;
             // 
             // frmQLyNhanVien
             // 
