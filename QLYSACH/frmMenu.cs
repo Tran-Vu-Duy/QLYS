@@ -18,8 +18,49 @@ namespace QLYSACH
         }
         private void frmMenu_Load(object sender, EventArgs e)
         {
-
+            // Đăng ký sự kiện thay đổi kích thước cho các panel
+            SideBar.SizeChanged += new EventHandler(SideBar_SizeChanged);
+            menuQuanLy.SizeChanged += new EventHandler(menuQuanLy_SizeChanged);
+            MenuBaoCao.SizeChanged += new EventHandler(MenuBaoCao_SizeChanged);
+            MenuTaiKhoan.SizeChanged += new EventHandler(MenuTaiKhoan_SizeChanged);
+            MenuTaoBaoCao.SizeChanged += new EventHandler(MenuTaoBaoCao_SizeChanged);
         }
+        private void SideBar_SizeChanged(object sender, EventArgs e)
+        {
+            AdjustChildForm();
+        }
+
+        private void menuQuanLy_SizeChanged(object sender, EventArgs e)
+        {
+            AdjustChildForm();
+        }
+
+        private void MenuBaoCao_SizeChanged(object sender, EventArgs e)
+        {
+            AdjustChildForm();
+        }
+
+        private void MenuTaiKhoan_SizeChanged(object sender, EventArgs e)
+        {
+            AdjustChildForm();
+        }
+
+        private void MenuTaoBaoCao_SizeChanged(object sender, EventArgs e)
+        {
+            AdjustChildForm();
+        }
+        private void AdjustChildForm()
+        {
+            if (ActiveMdiChild != null)
+            {
+                ActiveMdiChild.Dock = DockStyle.Fill;
+                ActiveMdiChild.Invalidate();
+            }
+        }
+
+        //...
+        //..Khai báo các Form
+        //...
         frmQLyNhanVien Nhanvien;
         frmQlyKhachHang Khachhang;
         frmQlyHoaDon Hoadon;
@@ -328,7 +369,7 @@ namespace QLYSACH
         }
         private void Hoadon_FormClosed(object sender, EventArgs e)
         {
-            Khachhang = null;
+            Hoadon = null;
         }
     }
 }

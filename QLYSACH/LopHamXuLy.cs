@@ -24,7 +24,39 @@ namespace QLYSACH
             // Mở kết nối
             conn.Open();
         }
-
+        //..
+        //..Khởi tạo hàm LoadDuLieu
+        //..
+        public static void LoadDuLieu(string sql, DataGridView dtgv)
+        {
+            try
+            {
+                // Khởi tạo đối tượng DataSet
+                DataSet ds = new DataSet();
+                //Kiểm tra kết nối trước khi khởi tạo DataAdapter
+                // Mở kết nối nếu chưa mở
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+                //Khởi tạo đối tượng DataAdapter và cung cấp câu lệnh SQL cùng đối tượng Connection
+                SqlDataAdapter dap = new SqlDataAdapter(sql, conn);
+                //Dùng phương thức Fill của DataAdapter để đổ dữ liệu từ DataSoure tới DataSet
+                dap.Fill(ds);
+                // gắn dữ liệu từ DataSet lên DataGridView
+                dtgv.DataSource = ds.Tables[0];               
+            }
+            catch (SqlException ex)
+            {
+                // Xử lý lỗi SQL
+                MessageBox.Show("Lỗi SQL: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các lỗi khác
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
         // Phương thức để ngắt kết nối đến cơ sở dữ liệu
         public static void Disconnect()
         {
@@ -65,7 +97,9 @@ namespace QLYSACH
             // Trả về kết quả
             return kq;
         }
-
+        //..
+        //..Khởi tạo phương thức thực thi Câu Truy Vấn
+        //..
         public static void runSql(string sql)
         {
             // Đảm bảo kết nối được thiết lập trước khi thực thi lệnh SQL

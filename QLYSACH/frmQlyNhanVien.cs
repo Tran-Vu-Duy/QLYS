@@ -367,7 +367,7 @@ namespace QLYSACH
         {
             Form frmM = new frmMenu();
             frmM.Show();
-            this.Hide();
+            this.Close();
         }
         private void Xoa()
         {
@@ -410,10 +410,18 @@ namespace QLYSACH
         {
             panelTT.Enabled = true;
             btnLuu.Enabled = true;
-            btnHuy.Enabled = true;
-            txtMa.Enabled = false;
+            btnHuy.Enabled = true;     
             btnThem.Enabled = false;
             btnXoa.Enabled = false;
+            if(txtMa.Text == "")
+            {
+                MessageBox.Show("Vui lòng chọn nhân viên cần chỉnh sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                txtMa.Enabled = false;
+                txtTen.Focus();
+            }
         }
         private void TimKiemNhanVien(string tuKhoa)
         {

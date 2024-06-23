@@ -16,6 +16,7 @@ namespace QLYSACH
     public partial class frmQlyKhachHang : Form
     {
         public static SqlConnection conn;
+      //  private 
         public frmQlyKhachHang()
         {
             InitializeComponent();
@@ -49,13 +50,13 @@ namespace QLYSACH
                 dtgvKH.Columns[1].HeaderText = "HỌ TÊN";
                 dtgvKH.Columns[1].Width = 120;
                 dtgvKH.Columns[2].HeaderText = "ĐỊA CHỈ ";
-                dtgvKH.Columns[2].Width = 120;
+                dtgvKH.Columns[2].Width = 150;
                 dtgvKH.Columns[3].HeaderText = "THÀNH PHỐ ";
                 dtgvKH.Columns[3].Width = 100;
                 dtgvKH.Columns[4].HeaderText = "SĐT";
                 dtgvKH.Columns[4].Width = 100;
                 dtgvKH.Columns[5].HeaderText = "EMAIL";
-                dtgvKH.Columns[5].Width = 120;
+                dtgvKH.Columns[5].Width = 150;
                 dtgvKH.Columns[6].HeaderText = "NGÀY SINH";
                 dtgvKH.Columns[6].Width = 100;
                 dtgvKH.Columns[7].HeaderText = "GIỚI TÍNH";
@@ -259,6 +260,8 @@ namespace QLYSACH
                 }
                 LopHamXuLy.Disconnect();
             }
+            btLuu.Enabled = true;
+            btHuy.Enabled = true;
         }
         private void Sua()
         {
@@ -369,9 +372,17 @@ namespace QLYSACH
             panelTT.Enabled = true;
             btLuu.Enabled = true;
             btHuy.Enabled = true;
-            txtMa.Enabled = false;
             btThem.Enabled = false;
             btXoa.Enabled = false;
+            if (txtMa.Text == "")
+            {
+                MessageBox.Show("Vui lòng chọn khách hàng cần chỉnh sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                txtMa.Enabled = false;
+                txtTen.Focus();
+            }
         }
 
         private void dtgvKH_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -395,40 +406,6 @@ namespace QLYSACH
                 {
                     rdNu.Checked = true;
                 }
-            }
-        }
-        private void LoadDuLieu(string sql)
-        {
-            try
-            {
-                // Khởi tạo đối tượng DataSet
-                DataSet ds = new DataSet();
-
-                // Kiểm tra kết nối trước khi tạo DataAdapter
-                if (conn == null)
-                {
-                    conn = new SqlConnection();
-                    conn.ConnectionString = "Data Source=LENOVO\\SQLEXPRESS;Initial Catalog=QLYSACH;Integrated Security=True";
-                    conn.Open();
-                }
-                // Khởi tạo đối tượng DataAdapter và cung cấp câu lệnh SQL cùng đối tượng Connection
-                SqlDataAdapter dap = new SqlDataAdapter(sql, conn);
-
-                // Dùng phương thức Fill của DataAdapter để đổ dữ liệu từ DataSource tới DataSet
-                dap.Fill(ds);
-
-                // Gắn dữ liệu từ DataSet lên DataGridView
-                dtgvKH.DataSource = ds.Tables[0];
-            }
-            catch (SqlException ex)
-            {
-                // Xử lý lỗi SQL
-                MessageBox.Show("Lỗi SQL: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                // Xử lý các lỗi khác
-                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
         private Boolean KiemTraNhap()
@@ -472,9 +449,8 @@ namespace QLYSACH
                 {
                     sqlTimKiem += " WHERE" + dk;
                 }
-                LoadDuLieu(sqlTimKiem);
+                LopHamXuLy.LoadDuLieu(sqlTimKiem,dtgvKH);
             }
-
         }
 
         private void btHuyTim_Click(object sender, EventArgs e)
@@ -491,8 +467,72 @@ namespace QLYSACH
             btLuu.Enabled = false;
             btSua.Enabled = true;
             btThem.Enabled = true;
+            btXoa.Enabled = true;
+        }
+
+        private void rdLocNu_CheckedChanged(object sender, EventArgs e)
+        {
+            LopHamXuLy.Connect();
+            string sqlLocNu = "SELECT * FROM KHACHHANG";
+            string dk = "";
+
+            if (rdLocNu.Checked)
+            {
+                dk += " GIOITINH = N'Nữ' ";
+            }
+
+            if (!string.IsNullOrWhiteSpace(dk))
+            {
+                sqlLocNu += " WHERE " + dk;
+            }
+            LopHamXuLy.LoadDuLieu(sqlLocNu, dtgvKH);
+            LopHamXuLy.Disconnect();   
+
+        }
+
+        private void rdLocNam_CheckedChanged(object sender, EventArgs e)
+        {
+            LopHamXuLy.Connect();
+            string sqlLocNam = "SELECT * FROM KHACHHANG";
+            string dk1 = "";
+
+            if (rdLocNam.Checked)
+            {
+                dk1 += " GIOITINH = N'Nam' ";
+            }
+
+            if (!string.IsNullOrWhiteSpace(dk1))
+            {
+                sqlLocNam += " WHERE " + dk1;
+            }
+            LopHamXuLy.LoadDuLieu(sqlLocNam, dtgvKH);
+            LopHamXuLy.Disconnect();
+
+        }
+
+        private void rdNamNu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdNamNu.Checked)
+            {
+                ShowKhachHang();
+            }
         }
         
     }
     
 }
+//...Các chức năng thêm và lỗi được sửa
+//...1: Thêm chức năng lọc theo giới tính cho khách hàng
+//...2: Thêm lớp LoadDuLieu
+//...3: Thêm thông báo khi chưa chọn KH hoặc NV để sửa
+//...4: Sửa mấy cái lặt vặt
+
+//...Các lỗi hiện tại:
+//...1: Chưa hiển thị hoàn toàn menu bên phải
+//...2: Nếu kh chọn nút thoát mà nhấn nút ở thanh menu thì các form bị chồng lên nhau
+//...3: Khi đã chọn lọc theo giới tính. Ví dụ chọn lọc theo nữ thì vẫn tìm kiếm được tên hoặc mã của Nam
+//...4: Chức vụ nên là combobox
+//...5: Nên có cảnh báo khi chưa lưu các thay đổi đổi, lưu khi thêm mới mà đã thoát form
+//...6: Nếu nhập sai dữ liệu thì nó vẫn lưu khi chọn thoát khỏi form
+//...7: Nếu nhập sai định dạng sau khi đưa thông thì nút Lưu và Huỷ bị ẩn, chỉ hiện sau nhấn nút sửa
+
