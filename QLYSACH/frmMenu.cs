@@ -320,6 +320,8 @@ namespace QLYSACH
                 Nhanvien.FormClosed += Nhanvien_FormClosed;
                 Nhanvien.MdiParent = this;
                 Nhanvien.Dock = DockStyle.Fill;
+                Nhanvien.StartPosition = FormStartPosition.Manual;
+                Nhanvien.Location =new Point(265, 0);
                 Nhanvien.Show();
             }
             else
@@ -340,6 +342,7 @@ namespace QLYSACH
                 Khachhang.FormClosed += Khachhang_FormClosed;
                 Khachhang.MdiParent = this;
                 Khachhang.Dock = DockStyle.Fill;
+
                 Khachhang.Show();
             }
             else

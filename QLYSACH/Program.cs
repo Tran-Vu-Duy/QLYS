@@ -16,7 +16,7 @@ namespace QLYSACH
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmQLyNhanVien());
+            Application.Run(new frmMenu());
         }
     }
 }
