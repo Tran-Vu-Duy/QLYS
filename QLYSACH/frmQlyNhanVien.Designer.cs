@@ -579,9 +579,10 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("MS Reference Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Location = new System.Drawing.Point(233, 800);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmQLyNhanVien";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "QLyNhanVien";
             this.Load += new System.EventHandler(this.QLyNhanVien_Load);
             this.panelNV.ResumeLayout(false);

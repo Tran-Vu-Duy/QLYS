@@ -139,9 +139,10 @@
             this.SideBar.Controls.Add(this.MenuBaoCao);
             this.SideBar.Controls.Add(this.MenuTaoBaoCao);
             this.SideBar.Controls.Add(this.MenuTaiKhoan);
+            this.SideBar.Dock = System.Windows.Forms.DockStyle.Left;
             this.SideBar.Location = new System.Drawing.Point(0, 59);
             this.SideBar.Name = "SideBar";
-            this.SideBar.Size = new System.Drawing.Size(233, 800);
+            this.SideBar.Size = new System.Drawing.Size(233, 694);
             this.SideBar.TabIndex = 2;
             // 
             // menuQuanLy
@@ -594,7 +595,7 @@
             this.ForeColor = System.Drawing.Color.White;
             this.IsMdiContainer = true;
             this.Name = "frmMenu";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmMenu";
             this.Load += new System.EventHandler(this.frmMenu_Load);
             this.pnlHearder.ResumeLayout(false);

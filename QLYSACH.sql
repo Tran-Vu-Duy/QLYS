@@ -74,27 +74,60 @@ CREATE TABLE KhachHang (
     GioiTinh NVARCHAR(10)
 );
 
--- Tạo bảng HoaDon
-CREATE TABLE HoaDon (
-    MaHD NVARCHAR(50) NOT NULL PRIMARY KEY,
-    MaNV NVARCHAR(50) NOT NULL,
+-- Tạo bảng HoaDonXuat
+CREATE TABLE HoaDonXuat (
+    MaHDX NVARCHAR(50) NOT NULL PRIMARY KEY,
     MaKH NVARCHAR(50) NOT NULL,
-    NgayLapHD DATE NOT NULL,
-    TongTien FLOAT NOT NULL,
-    FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV),
-    FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKH)
+	MaNV NVARCHAR(50) NOT NULL,
+    NgayXuat DATE NOT NULL,
+    ThanhTien FLOAT NOT NULL,
+    FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKH),
+	FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV)
 );
 
--- Tạo bảng CTHD (ChiTietHoaDon)
-CREATE TABLE CTHD (
-    MaCTHD NVARCHAR(50) NOT NULL PRIMARY KEY,
-    MaHD NVARCHAR(50) NOT NULL,
+-- Tạo bảng ChiTietHoaDonXuat (CTHDX)
+CREATE TABLE CTHDX (
+    MaCT_HDX NVARCHAR(50) NOT NULL PRIMARY KEY,
+    MaHDX NVARCHAR(50) NOT NULL,
     MaSach NVARCHAR(50) NOT NULL,
-    DonGia FLOAT NOT NULL,
-    SoLuong INT NOT NULL,
-    GiamGia FLOAT NOT NULL,
-    ThanhTien FLOAT,
-    FOREIGN KEY (MaHD) REFERENCES HoaDon(MaHD),
+    SoLuongXuat INT NOT NULL,
+    DonGiaXuat FLOAT NOT NULL,
+    TongTien FLOAT NOT NULL,
+    FOREIGN KEY (MaHDX) REFERENCES HoaDonXuat(MaHDX),
+    FOREIGN KEY (MaSach) REFERENCES Sach(MaSach)
+);
+
+-- Tạo bảng HoaDonNhap
+CREATE TABLE HoaDonNhap (
+    MaHDN NVARCHAR(50) NOT NULL PRIMARY KEY,
+    MaNXB NVARCHAR(50) NOT NULL,
+	MaNV NVARCHAR(50) NOT NULL,
+    NgayNhap DATE NOT NULL,
+    ThanhTien FLOAT NOT NULL,
+    FOREIGN KEY (MaNXB) REFERENCES NhaXuatBan(MaNXB),
+	FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV)
+);
+
+-- Tạo bảng ChiTietHoaDonNhap (CTHDN)
+CREATE TABLE CTHDN (
+    MaCT_HDN NVARCHAR(50) NOT NULL PRIMARY KEY,
+    MaHDN NVARCHAR(50) NOT NULL,
+    MaSach NVARCHAR(50) NOT NULL,
+    SoLuongNhap INT NOT NULL,
+    DonGiaNhap FLOAT NOT NULL,
+    TongTien FLOAT NOT NULL,
+    FOREIGN KEY (MaHDN) REFERENCES HoaDonNhap(MaHDN),
+    FOREIGN KEY (MaSach) REFERENCES Sach(MaSach)
+);
+
+-- Tạo bảng Kho
+CREATE TABLE Kho (
+    MaKhoHang NVARCHAR(50) NOT NULL PRIMARY KEY,
+    MaNXB NVARCHAR(50) NOT NULL,
+    MaSach NVARCHAR(50) NOT NULL,
+    SLTon INT NOT NULL,
+    NgayNhapKho DATE NOT NULL,
+    FOREIGN KEY (MaNXB) REFERENCES NhaXuatBan(MaNXB),
     FOREIGN KEY (MaSach) REFERENCES Sach(MaSach)
 );
 
@@ -190,35 +223,53 @@ VALUES
 -- Dữ liệu cho bảng TacGia
 INSERT INTO TacGia (MaTG, TenTG, QueQuan, NgaySinh, NgayMat, TieuSu, GioiTinh, ThanhPho) 
 VALUES 
-(N'TG001', N'Nguyễn Nhật Ánh', N'Quảng Nam', '1955-06-01', NULL, N'Tác giả nổi tiếng với các tác phẩm dành cho thanh thiếu niên.', 'Nam', 'Hà Nội'),
-(N'TG002', N'J.K. Rowling', N'Yate, Anh', '1965-07-31', NULL, N'Tác giả của loạt truyện Harry Potter.', 'Nữ', 'Yate');
+(N'TG001', N'J.K. Rowling', N'Anh', '1965-07-31', NULL, N'Tác giả của Harry Potter', N'Nữ', N'London'),
+(N'TG002', N'Nguyễn Nhật Ánh', N'Việt Nam', '1955-05-07', NULL, N'Tác giả của Kính Vạn Hoa', N'Nam', N'Hồ Chí Minh');
 
 -- Dữ liệu cho bảng Sach
 INSERT INTO Sach (MaSach, TenSach, MaNXB, MaTG, GiaBan, GiaNhap, MoTa, SoLuong, MaLoai) 
 VALUES 
-(N'S001', N'Cho tôi xin một vé đi tuổi thơ', N'NXB001', N'TG001', 50000, 30000, N'Tác phẩm nổi tiếng của Nguyễn Nhật Ánh', 100, N'TL002'),
-(N'S002', N'Harry Potter và Hòn đá phù thủy', N'NXB002', N'TG002', 100000, 70000, N'Tập đầu tiên trong loạt truyện Harry Potter', 150, N'TL001');
+(N'S001', N'Harry Potter và Hòn Đá Phù Thủy', N'NXB001', N'TG001', 150000, 100000, N'Tập 1 của Harry Potter', 100, N'TL001'),
+(N'S002', N'Kính Vạn Hoa - Tập 1', N'NXB002', N'TG002', 50000, 30000, N'Tập 1 của Kính Vạn Hoa', 200, N'TL003');
 
 -- Dữ liệu cho bảng NhanVien
 INSERT INTO NhanVien (MaNV, TenNV, DiaChi, ThanhPho, SDTNV, EmailNV, NgaySinh, GioiTinh, ChucVu) 
 VALUES 
-(N'NV001', N'Nguyễn Văn A', N'123 Đường ABC', N'Hà Nội', 123456789, N'nva@example.com', '1980-01-01', N'Nam', N'Quản lý'),
-(N'NV002', N'Trần Thị B', N'456 Đường XYZ', N'TP.HCM', 987654321, N'ttb@example.com', '1990-02-02', N'Nữ', N'Nhân viên bán hàng');
+(N'NV001', N'Nguyễn Văn A', N'123 Đường ABC', N'Hà Nội', 123456789, N'nguyenvana@example.com', '1990-01-01', N'Nam', N'Quản lý'),
+(N'NV002', N'Trần Thị B', N'456 Đường XYZ', N'TP.HCM', 987654321, N'tranthib@example.com', '1992-02-02', N'Nữ', N'Nhân viên');
 
 -- Dữ liệu cho bảng KhachHang
 INSERT INTO KhachHang (MaKH, TenKH, DiaChi, ThanhPho, SDTKH, EmailKH, NgaySinh, GioiTinh) 
 VALUES 
-(N'KH001', N'Phạm Văn C', N'789 Đường QWE', N'Đà Nẵng', 123123123, N'pvc@example.com', '2000-03-03', N'Nam'),
-(N'KH002', N'Lê Thị D', N'321 Đường RTY', N'Hải Phòng', 321321321, N'ltd@example.com', '1995-04-04', N'Nữ');
+(N'KH001', N'Lê Văn C', N'789 Đường DEF', N'Đà Nẵng', 456123789, N'levanc@example.com', '1988-03-03', N'Nam'),
+(N'KH002', N'Phạm Thị D', N'101 Đường GHI', N'Hải Phòng', 789456123, N'phamthid@example.com', '1991-04-04', N'Nữ');
 
--- Dữ liệu cho bảng HoaDon
-INSERT INTO HoaDon (MaHD, MaNV, MaKH, NgayLapHD, TongTien) 
+-- Dữ liệu cho bảng HoaDonXuat
+INSERT INTO HoaDonXuat (MaHDX, MaKH, MaNV, NgayXuat, ThanhTien) 
 VALUES 
-(N'HD001', N'NV001', N'KH001', '2023-01-01', 50000),
-(N'HD002', N'NV002', N'KH002', '2023-01-02', 100000);
+(N'HDX001', N'KH001', N'NV001', '2024-06-01', 150000),
+(N'HDX002', N'KH002', N'NV002', '2024-06-02', 50000);
 
--- Dữ liệu cho bảng CTHD (ChiTietHoaDon)
-INSERT INTO CTHD (MaCTHD, MaHD, MaSach, DonGia, SoLuong, GiamGia, ThanhTien) 
+-- Dữ liệu cho bảng CTHDX
+INSERT INTO CTHDX (MaCT_HDX, MaHDX, MaSach, SoLuongXuat, DonGiaXuat, TongTien) 
 VALUES 
-(N'CTHD001', N'HD001', N'S001', 50000, 1, 0, 50000),
-(N'CTHD002', N'HD002', N'S002', 100000, 1, 0, 100000);
+(N'CTHDX001', N'HDX001', N'S001', 1, 150000, 150000),
+(N'CTHDX002', N'HDX002', N'S002', 1, 50000, 50000);
+
+-- Dữ liệu cho bảng HoaDonNhap
+INSERT INTO HoaDonNhap (MaHDN, MaNXB, MaNV, NgayNhap, ThanhTien) 
+VALUES 
+(N'HDN001', N'NXB001', N'NV001', '2024-05-01', 100000),
+(N'HDN002', N'NXB002', N'NV002', '2024-05-02', 30000);
+
+-- Dữ liệu cho bảng CTHDN
+INSERT INTO CTHDN (MaCT_HDN, MaHDN, MaSach, SoLuongNhap, DonGiaNhap, TongTien) 
+VALUES 
+(N'CTHDN001', N'HDN001', N'S001', 1, 100000, 100000),
+(N'CTHDN002', N'HDN002', N'S002', 1, 30000, 30000);
+-- Dữ liệu cho bảng Kho
+INSERT INTO Kho (MaKhoHang, MaNXB, MaSach, SLTon, NgayNhapKho) 
+VALUES 
+(N'KHO001', N'NXB001', N'S001', 50, '2023-01-01'),
+(N'KHO002', N'NXB002', N'S002', 75, '2023-02-01'),
+(N'KHO003', N'NXB001', N'S002', 30, '2023-03-01');

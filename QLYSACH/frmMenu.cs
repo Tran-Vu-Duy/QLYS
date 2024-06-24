@@ -15,6 +15,7 @@ namespace QLYSACH
         public frmMenu()
         {
             InitializeComponent();
+            this.Resize += new EventHandler(MainForm_Resize);
         }
         private void frmMenu_Load(object sender, EventArgs e)
         {
@@ -266,25 +267,11 @@ namespace QLYSACH
 
         private void btHoaDon_Click(object sender, EventArgs e)
         {
-            Form frmHD = new frmQlyHoaDon();
-            frmHD.Show();
-            this.Hide();
         }
 
         private void btNhanVien_Click(object sender, EventArgs e)
         {
-            if (Nhanvien == null)
-            {
-                Nhanvien = new frmQLyNhanVien();
-                Nhanvien.FormClosed += Nhanvien_FormClosed;
-                Nhanvien.MdiParent = this;
-                Nhanvien.Dock = DockStyle.Fill;
-                Nhanvien.Show();
-            }
-            else
-            {
-                Nhanvien.Activate();
-            }
+           
         }
         private void Nhanvien_FormClosed(object sender, EventArgs e)
         {
@@ -298,12 +285,18 @@ namespace QLYSACH
                 Khachhang = new frmQlyKhachHang();
                 Khachhang.FormClosed += Khachhang_FormClosed;
                 Khachhang.MdiParent = this;
-                Khachhang.Dock = DockStyle.Fill;
+
+                // Thiết lập vị trí và kích thước của form con
+                Khachhang.StartPosition = FormStartPosition.Manual;
+                Khachhang.Location = new Point(SideBar.Width, 0); // Đặt vị trí ngay bên phải slidebar
+                Khachhang.Width = this.ClientSize.Width - SideBar.Width;
+                Khachhang.Height = this.ClientSize.Height;
+
                 Khachhang.Show();
             }
             else
             {
-                Nhanvien.Activate();
+                Khachhang.Activate();
             }
         }
         private void Khachhang_FormClosed(object sender, EventArgs e)
@@ -318,7 +311,13 @@ namespace QLYSACH
                 Hoadon = new frmQlyHoaDon();
                 Hoadon.FormClosed += Hoadon_FormClosed;
                 Hoadon.MdiParent = this;
-                Hoadon.Dock = DockStyle.Fill;
+
+                // Thiết lập vị trí và kích thước của form con
+                Hoadon.StartPosition = FormStartPosition.Manual;
+                Hoadon.Location = new Point(SideBar.Width, 0); // Đặt vị trí ngay bên phải slidebar
+                Hoadon.Width = this.ClientSize.Width - SideBar.Width;
+                Hoadon.Height = this.ClientSize.Height;
+
                 Hoadon.Show();
             }
             else
@@ -330,5 +329,19 @@ namespace QLYSACH
         {
             Khachhang = null;
         }
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            if (Khachhang != null)
+            {
+                Khachhang.Width = this.ClientSize.Width - SideBar.Width;
+                Khachhang.Height = this.ClientSize.Height;
+            }
+            if (Hoadon != null)
+            {
+                Hoadon.Width = this.ClientSize.Width - SideBar.Width;
+                Hoadon.Height = this.ClientSize.Height;
+            }
+        }
+
     }
 }

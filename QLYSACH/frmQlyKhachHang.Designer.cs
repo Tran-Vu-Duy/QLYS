@@ -68,7 +68,6 @@
             this.txtTimTen = new System.Windows.Forms.TextBox();
             this.btTim = new System.Windows.Forms.Button();
             this.btHuyTim = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
             this.txtTimMa = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -101,7 +100,7 @@
             // dtgvKH
             // 
             this.dtgvKH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvKH.Location = new System.Drawing.Point(3, 3);
+            this.dtgvKH.Location = new System.Drawing.Point(0, 0);
             this.dtgvKH.Name = "dtgvKH";
             this.dtgvKH.RowTemplate.Height = 24;
             this.dtgvKH.Size = new System.Drawing.Size(902, 380);
@@ -431,6 +430,7 @@
             // 
             // txtTen
             // 
+            this.txtTen.Font = new System.Drawing.Font("MS Reference Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txtTen.Location = new System.Drawing.Point(139, 67);
             this.txtTen.Multiline = true;
             this.txtTen.Name = "txtTen";
@@ -469,6 +469,7 @@
             // 
             // txtMa
             // 
+            this.txtMa.Font = new System.Drawing.Font("MS Reference Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txtMa.Location = new System.Drawing.Point(7, 67);
             this.txtMa.Multiline = true;
             this.txtMa.Name = "txtMa";
@@ -533,17 +534,6 @@
             this.btHuyTim.UseVisualStyleBackColor = false;
             this.btHuyTim.Click += new System.EventHandler(this.btHuyTim_Click);
             // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("MS Reference Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
-            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.label19.Location = new System.Drawing.Point(498, 9);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(100, 22);
-            this.label19.TabIndex = 5;
-            this.label19.Text = "Tìm Kiếm";
-            // 
             // txtTimMa
             // 
             this.txtTimMa.Location = new System.Drawing.Point(704, 47);
@@ -581,7 +571,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1347, 633);
             this.ControlBox = false;
-            this.Controls.Add(this.label19);
             this.Controls.Add(this.btHuyTim);
             this.Controls.Add(this.btTim);
             this.Controls.Add(this.panelTT);
@@ -652,7 +641,6 @@
         private System.Windows.Forms.TextBox txtTimTen;
         private System.Windows.Forms.Button btTim;
         private System.Windows.Forms.Button btHuyTim;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.DataGridView dtgvKH;
         private System.Windows.Forms.TextBox txtTimMa;
         private System.Windows.Forms.Label label20;

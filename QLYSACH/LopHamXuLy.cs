@@ -20,7 +20,7 @@ namespace QLYSACH
             // Khởi tạo đối tượng kết nối
             conn = new SqlConnection();
             // Thiết lập chuỗi kết nối
-            conn.ConnectionString = "Data Source=LENOVO\\SQLEXPRESS;Initial Catalog=QLYSACH;Integrated Security=True";
+            conn.ConnectionString = @"Data Source=DESKTOP-QVLRGRF\VUDUY;Initial Catalog=QLYSACH;Integrated Security=True";
             // Mở kết nối
             conn.Open();
         }
