@@ -6,9 +6,9 @@ D:\NhuNgoc\QLYS\QLYSACH\obj\Debug\QLYSACH.frmDangKi.resources
 D:\NhuNgoc\QLYS\QLYSACH\obj\Debug\QLYSACH.frmDangNhap.resources
 D:\NhuNgoc\QLYS\QLYSACH\obj\Debug\QLYSACH.frmMenu.resources
 D:\NhuNgoc\QLYS\QLYSACH\obj\Debug\QLYSACH.frmQlyHoaDon.resources
+D:\NhuNgoc\QLYS\QLYSACH\obj\Debug\QLYSACH.frmQlyKhachHang.resources
 D:\NhuNgoc\QLYS\QLYSACH\obj\Debug\QLYSACH.Properties.Resources.resources
 D:\NhuNgoc\QLYS\QLYSACH\obj\Debug\QLYSACH.frmQLyNhanVien.resources
 D:\NhuNgoc\QLYS\QLYSACH\obj\Debug\QLYSACH.csproj.GenerateResource.Cache
 D:\NhuNgoc\QLYS\QLYSACH\obj\Debug\QLYSACH.exe
 D:\NhuNgoc\QLYS\QLYSACH\obj\Debug\QLYSACH.pdb
-D:\NhuNgoc\QLYS\QLYSACH\obj\Debug\QLYSACH.frmQlyKhachHang.resources
