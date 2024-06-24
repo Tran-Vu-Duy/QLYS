@@ -37,7 +37,6 @@ namespace QLYSACH
             txtTP.Clear();
             txtSDT.Clear();
             txtNSinh.Clear();
-            txtChucVu.Clear();
             rdNam.Checked = false;
             rdNu.Checked = false;
             txtMa.Focus();
@@ -47,7 +46,7 @@ namespace QLYSACH
             DataTable dtnhanvien = new DataTable();
             LopHamXuLy.Connect();
             string sqlNhanVien = "SELECT * FROM NHANVIEN";
-            if(LopHamXuLy.TruyVan(sqlNhanVien,dtnhanvien))
+            if (LopHamXuLy.TruyVan(sqlNhanVien, dtnhanvien))
             {
                 // Đặt DataSource cho DataGridView
                 dtgvNV.DataSource = dtnhanvien;
@@ -106,19 +105,21 @@ namespace QLYSACH
                 // Đặt màu nền cho các ô khi được chọn
                 dtgvNV.DefaultCellStyle.SelectionBackColor = Color.FromArgb(116, 86, 174);
                 dtgvNV.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+                // Gắn sự kiện CellFormatting
+                dtgvNV.CellFormatting += DtgvNV_CellFormatting;
             }
         }
-
+        private void DtgvNV_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dtgvNV.Columns[e.ColumnIndex].Name == "TENNV" && e.Value != null)
+            {
+                e.Value = e.Value.ToString().ToUpper();
+                e.FormattingApplied = true;
+            }
+        }
         public bool KiemTraThongTin()
         {
-            // Kiểm tra mã 
-            if (txtMa.Text == "")
-            {
-                MessageBox.Show("Vui lòng nhập mã nhân viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtMa.Focus();
-                return false;
-            }
-
             // Kiểm tra tên 
             if (txtTen.Text == "")
             {
@@ -241,7 +242,8 @@ namespace QLYSACH
         {
             if (KiemTraThongTin())
             {
-                if (KiemTraMaNV(txtMa.Text))
+                string newMaNV = TaoMoiMaNV();
+                if (KiemTraMaNV(newMaNV))
                 {
                     MessageBox.Show("Mã nhân viên đã tồn tại. Vui lòng nhập mã khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtMa.Focus();
@@ -249,14 +251,14 @@ namespace QLYSACH
                 }
                 LopHamXuLy.Connect();
                 string gioiTinh = rdNam.Checked ? "Nam" : "Nữ";
-                string sqlInsert = "INSERT INTO NHANVIEN(MANV, TENNV, DIACHI, THANHPHO, SDTNV, EMAILNV, NGAYSINH, GIOITINH, CHUCVU) VALUES(N'" + txtMa.Text +
+                string sqlInsert = "INSERT INTO NHANVIEN(MANV, TENNV, DIACHI, THANHPHO, SDTNV, EMAILNV, NGAYSINH, GIOITINH, CHUCVU) VALUES(N'" + newMaNV +
                     "', N'" + txtTen.Text +
                     "', N'" + txtDiaChi.Text +
                     "', N'" + txtTP.Text +
                     "', '" + txtSDT.Text +
                     "', '" + txtEmail.Text + "', '" + DateTime.ParseExact(txtNSinh.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") + 
                     "', N'" + gioiTinh +
-                    "', N'" + txtChucVu.Text + "')";
+                    "', N'" + cboChucVu.SelectedValue.ToString() + "')";
                 try
                 {
                     LopHamXuLy.runSql(sqlInsert);
@@ -296,7 +298,9 @@ namespace QLYSACH
                 {
                     rdNu.Checked = true;
                 }
-                txtChucVu.Text = row.Cells["CHUCVU"].Value.ToString();
+                string ChucVu = row.Cells["CHUCVU"].Value.ToString();
+                string sql = "SELECT CHUCVU FROM NHANVIEN WHERE MANV=N'" + ChucVu + "'";
+                cboChucVu.Text = LopHamXuLy.GetFieldValue(sql);
             }
         }
 
@@ -307,6 +311,8 @@ namespace QLYSACH
             btnHuy.Enabled = false;
             btnLuu.Enabled = false;
             ShowNhanVien();
+            string sql = "SELECT DISTINCT CHUCVU FROM NHANVIEN";
+            LopHamXuLy.FillComboBox(sql,"CHUCVU", "CHUCVU", cboChucVu);
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -314,6 +320,8 @@ namespace QLYSACH
             panelTT.Enabled = true;
             btnLuu.Enabled = true;
             btnHuy.Enabled = true;
+            txtMa.Enabled = false;
+            txtMa.Text = TaoMoiMaNV();
             Reset();
             btnXoa.Enabled = false;
             btnSua.Enabled = false;
@@ -331,7 +339,7 @@ namespace QLYSACH
                                    "', EMAILNV = '" + txtEmail.Text +
                                    "', NGAYSINH = '" + DateTime.ParseExact(txtNSinh.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") +
                                    "', GIOITINH = N'" + gioiTinh +
-                                   "', CHUCVU = N'" + txtChucVu.Text +
+                                   "', CHUCVU = N'" + cboChucVu.SelectedValue.ToString() +
                                    "' WHERE MANV = N'" + txtMa.Text + "'";
 
                 try
@@ -401,11 +409,6 @@ namespace QLYSACH
             btnThem.Enabled = true;
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            TimKiemNhanVien(txtSearch.Text.Trim());
-        }
-
         private void btnSua_Click(object sender, EventArgs e)
         {
             panelTT.Enabled = true;
@@ -423,83 +426,127 @@ namespace QLYSACH
                 txtTen.Focus();
             }
         }
-        private void TimKiemNhanVien(string tuKhoa)
-        {
-            DataTable dtTimKiem = new DataTable();
-            LopHamXuLy.Connect();
-            string sqlTimKiem = "SELECT * FROM NHANVIEN WHERE MANV LIKE N'%" + tuKhoa + "%' OR TENNV LIKE N'%" + tuKhoa +"'";
-            if (LopHamXuLy.TruyVan(sqlTimKiem, dtTimKiem))
-            {
-                // Đặt DataSource cho DataGridView
-                dtgvNV.DataSource = dtTimKiem;
-
-                // Đặt tiêu đề và độ rộng cho các cột
-                dtgvNV.Columns[0].HeaderText = "MÃ NV";
-                dtgvNV.Columns[0].Width = 80;
-                dtgvNV.Columns[1].HeaderText = "TÊN NV";
-                dtgvNV.Columns[1].Width = 120;
-                dtgvNV.Columns[2].HeaderText = "ĐỊA CHỈ ";
-                dtgvNV.Columns[2].Width = 120;
-                dtgvNV.Columns[3].HeaderText = "THÀNH PHỐ ";
-                dtgvNV.Columns[3].Width = 100;
-                dtgvNV.Columns[4].HeaderText = "SĐT";
-                dtgvNV.Columns[4].Width = 100;
-                dtgvNV.Columns[5].HeaderText = "EMAIL";
-                dtgvNV.Columns[5].Width = 120;
-                dtgvNV.Columns[6].HeaderText = "NGÀY SINH";
-                dtgvNV.Columns[6].Width = 100;
-                dtgvNV.Columns[7].HeaderText = "GIỚI TÍNH";
-                dtgvNV.Columns[7].Width = 60;
-                dtgvNV.Columns[8].HeaderText = "CHỨC VỤ";
-                dtgvNV.Columns[8].Width = 60;
-
-                // Định dạng ngày sinh hiển thị
-                dtgvNV.Columns["NGAYSINH"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                // Thiết lập kiểu hiển thị cho header
-                dtgvNV.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(116, 86, 174);
-                dtgvNV.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-                dtgvNV.ColumnHeadersDefaultCellStyle.Font = new Font("MS Reference Sans Serif", 10, FontStyle.Regular);
-
-                // Đặt nền cho DataGridView
-                dtgvNV.BackgroundColor = Color.FromArgb(235, 230, 255);
-
-                // Loại bỏ border giữa các hàng
-                dtgvNV.CellBorderStyle = DataGridViewCellBorderStyle.None;
-
-                // Đặt màu nền cho các ô khi được chọn
-                dtgvNV.DefaultCellStyle.SelectionBackColor = Color.FromArgb(235, 230, 255);
-
-                // Đặt font chữ và màu nền cho các ô
-                dtgvNV.DefaultCellStyle.Font = new Font("MS Reference Sans Serif", 10, FontStyle.Regular);
-                dtgvNV.DefaultCellStyle.BackColor = Color.FromArgb(230, 231, 233);
-
-                // Loại bỏ kiểu mặc định của header
-                dtgvNV.EnableHeadersVisualStyles = false;
-
-                // Đặt màu nền cho các ô không được chọn
-                dtgvNV.DefaultCellStyle.BackColor = Color.FromArgb(230, 231, 233);
-                dtgvNV.DefaultCellStyle.ForeColor = Color.Black;
-
-                // Đặt màu nền cho hàng lẻ và hàng chẵn nếu muốn
-                dtgvNV.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 231, 233);
-                dtgvNV.RowsDefaultCellStyle.BackColor = Color.FromArgb(235, 230, 255);
-
-                // Đặt màu nền cho các ô khi được chọn
-                dtgvNV.DefaultCellStyle.SelectionBackColor = Color.FromArgb(116, 86, 174);
-                dtgvNV.DefaultCellStyle.SelectionForeColor = Color.Black;
-            }
-            else
-            {
-                MessageBox.Show("MÃ HOẶC TÊN NHÂN VIÊN KHÔNG CHÍNH XÁC", "XÁC NHẬN", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            LopHamXuLy.Disconnect();
-        }
 
         private void panelTT_Paint(object sender, PaintEventArgs e)
         {
 
         }
+        private Boolean KiemTraNhap()
+        {
+            if (txtTimMa.Text == "" && txtTimTen.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập Mã hoặc Tên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
 
+            return true;
+        }
+        private void btTim_Click(object sender, EventArgs e)
+        {
+            if (KiemTraNhap())
+            {
+                LopHamXuLy.Connect();
+                string sqlTimKiem = "SELECT * FROM NHANVIEN";
+                string dk = "";
+
+                // Tìm theo MaSP khác rỗng
+                if (txtTimMa.Text.Trim() != "")
+                {
+                    dk += " MaNV LIKE '%" + txtTimMa.Text + "%'";
+                }
+
+                // Kiểm tra TenSP và MaSP khác rỗng
+                if (txtTimTen.Text.Trim() != "" && dk != "")
+                {
+                    dk += " AND TENNV LIKE N'%" + txtTimTen.Text + "%'";
+                }
+
+                // Tìm kiếm theo TenSP khi MaSP là rỗng
+                if (txtTimTen.Text.Trim() != "" && dk == "")
+                {
+                    dk += " TENNV LIKE N'%" + txtTimTen.Text + "%'";
+                }
+
+                // Kết hợp điều kiện
+                if (dk != "")
+                {
+                    sqlTimKiem += " WHERE" + dk;
+                }
+                LopHamXuLy.LoadDuLieu(sqlTimKiem, dtgvNV);
+            }
+        }
+
+        private void rdQL_CheckedChanged(object sender, EventArgs e)
+        {
+            LopHamXuLy.Connect();
+            string sqlLocQl = "SELECT * FROM NHANVIEN";
+            string dk = "";
+
+            if (rdQL.Checked)
+            {
+                dk += " CHUCVU = N'Quản Lý' ";
+            }
+
+            if (!string.IsNullOrWhiteSpace(dk))
+            {
+                sqlLocQl += " WHERE " + dk;
+            }
+            LopHamXuLy.LoadDuLieu(sqlLocQl, dtgvNV);
+            LopHamXuLy.Disconnect();   
+        }
+
+        private void rdNV_CheckedChanged(object sender, EventArgs e)
+        {
+            LopHamXuLy.Connect();
+            string sqlLocNV = "SELECT * FROM NHANVIEN";
+            string dk1 = "";
+
+            if (rdNV.Checked)
+            {
+                dk1 += " CHUCVU = N'Nhân Viên' ";
+            }
+
+            if (!string.IsNullOrWhiteSpace(dk1))
+            {
+                sqlLocNV += " WHERE " + dk1;
+            }
+            LopHamXuLy.LoadDuLieu(sqlLocNV, dtgvNV);
+            LopHamXuLy.Disconnect();
+        }
+
+        private void rdAll_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdAll.Checked)
+            {
+                ShowNhanVien();
+            }
+        }
+
+        private void cboChucVu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private string TaoMoiMaNV()
+        {
+            DataTable dt = new DataTable();
+            string sql = "SELECT MANV FROM NHANVIEN ORDER BY MANV DESC";
+            LopHamXuLy.Connect();
+            LopHamXuLy.TruyVan(sql, dt);
+            LopHamXuLy.Disconnect();
+
+            if (dt.Rows.Count > 0)
+            {
+                string lastMaNV = dt.Rows[0]["MANV"].ToString();
+                string kytudau = lastMaNV.Substring(0, 2);
+                int macuoi = int.Parse(lastMaNV.Substring(2));
+                int mamoi = macuoi + 1;
+                return kytudau + mamoi.ToString("D3"); // Tăng số và định dạng thành 3 chữ số
+            }
+            else
+            {
+                return "NV001"; // Mã nhân viên mặc định nếu không có nhân viên nào
+            }
+        }
 
     }
 }

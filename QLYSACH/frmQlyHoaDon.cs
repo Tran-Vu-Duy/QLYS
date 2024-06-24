@@ -21,6 +21,7 @@ namespace QLYSACH
         {
             txtMaKH.Clear();
             txtMaHD.Clear();
+            txtMaNV.Clear();
             txtNLapHD.Clear();
             txtTong.Clear();
             txtMaHD.Focus();
@@ -30,7 +31,7 @@ namespace QLYSACH
         {
             DataTable dthoadon = new DataTable();
             LopHamXuLy.Connect();
-            string sqlHoadon = "SELECT * FROM HOADON";
+            string sqlHoadon = "SELECT * FROM HOADONXUAT";
             if (LopHamXuLy.TruyVan(sqlHoadon, dthoadon))
             {
                 // Đặt DataSource cho DataGridView
@@ -38,18 +39,23 @@ namespace QLYSACH
 
                 // Đặt tiêu đề và độ rộng cho các cột
                 dtgvHD.Columns[0].HeaderText = "MÃ HOÁ ĐƠN";
-                dtgvHD.Columns[0].Width = 100;
+                dtgvHD.Columns[0].Width = 150;
                 dtgvHD.Columns[1].HeaderText = "MÃ NHÂN VIÊN";
-                dtgvHD.Columns[1].Width = 100;
+                dtgvHD.Columns[1].Width = 150;
                 dtgvHD.Columns[2].HeaderText = "MÃ KHÁCH HÀNG";
-                dtgvHD.Columns[2].Width = 100;
+                dtgvHD.Columns[2].Width = 150;
                 dtgvHD.Columns[3].HeaderText = "NGÀY LẬP HOÁ ĐƠN";
-                dtgvHD.Columns[3].Width = 120;
+                dtgvHD.Columns[3].Width = 200;
                 dtgvHD.Columns[4].HeaderText = "TỔNG TIỀN";
-                dtgvHD.Columns[4].Width = 100;
+                dtgvHD.Columns[4].Width = 200;
 
-                // Định dạng ngày sinh hiển thị
-                dtgvHD.Columns["NGAYLAPHD"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                // Định dạng ngày lập hóa đơn hiển thị
+                dtgvHD.Columns["NGAYXUAT"].DefaultCellStyle.Format = "dd/MM/yyyy";
+
+                // Định dạng tiền tệ cho cột tổng tiền
+                dtgvHD.Columns["THANHTIEN"].DefaultCellStyle.Format = "c";
+                dtgvHD.Columns["THANHTIEN"].DefaultCellStyle.FormatProvider = new System.Globalization.CultureInfo("vi-VN");
+
                 // Thiết lập kiểu hiển thị cho header
                 dtgvHD.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(116, 86, 174);
                 dtgvHD.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
@@ -95,10 +101,10 @@ namespace QLYSACH
             }
 
             // Kiểm tra tên 
-            if (cboNV.Text == "")
+            if (txtMaNV.Text == "")
             {
                 MessageBox.Show("Vui lòng chọn nhân viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cboNV.Focus();
+                txtMaNV.Focus();
                 return false;
             }
 
@@ -150,19 +156,32 @@ namespace QLYSACH
 
             return true;
         }
+        //Kiểm tra mã hoá đơn
+        private bool KiemTraMaHD(string maHD)
+        {
+            DataTable dt = new DataTable();
+            string sql = "SELECT COUNT(*) FROM HOADONXUAT WHERE MAHDX = N'" + maHD + "'";
+            LopHamXuLy.Connect();
+            LopHamXuLy.TruyVan(sql, dt);
+            LopHamXuLy.Disconnect();
+
+            if (dt.Rows.Count > 0 && Convert.ToInt32(dt.Rows[0][0]) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
 
         private void dtgvHD_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dtgvHD.Rows[e.RowIndex];
-                txtMaHD.Text = row.Cells["MAHD"].Value.ToString();
+                txtMaHD.Text = row.Cells["MAHDX"].Value.ToString();
+                txtMaNV.Text = row.Cells["MANV"].Value.ToString();
                 txtMaKH.Text = row.Cells["MAKH"].Value.ToString();
-                txtTong.Text = row.Cells["TONGTIEN"].Value.ToString();
-                txtNLapHD.Text = DateTime.Parse(row.Cells["NGAYLAPHD"].Value.ToString()).ToString("dd/MM/yyyy");
-                string MaNV = row.Cells["MANV"].Value.ToString();
-                string sql = "SELECT TENNV FROM CHATLIEU WHERE MANV=N'" + MaNV + "'";
-                cboNV.Text = LopHamXuLy.GetFieldValue(sql);
+                txtTong.Text = row.Cells["THANHTIEN"].Value.ToString();
+                txtNLapHD.Text = DateTime.Parse(row.Cells["NGAYXUAT"].Value.ToString()).ToString("dd/MM/yyyy");
             }
         }
 
@@ -171,13 +190,176 @@ namespace QLYSACH
             this.ControlBox = false;
             panelTT.Enabled = false;
             ShowHoaDon();
-            string sql = "SELECT * FROM NHANVIEN";
-            LopHamXuLy.FillComboBox(sql, "MANV", "TENNV", cboNV);
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void Them()
+        {
+            if (KiemTraThongTin())
+            {
+                if (KiemTraMaHD(txtMaHD.Text))
+                {
+                    MessageBox.Show("Mã nhân viên đã tồn tại. Vui lòng nhập mã khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtMaHD.Focus();
+                    return;
+                }
+                LopHamXuLy.Connect();
+                string sqlInsert = "INSERT INTO HOADONXUAT(MAHDX, MAKH, MANV, NGAYXUAT, THANHTIEN) VALUES(N'" + txtMaHD.Text +
+                                    "', N'" + txtMaKH.Text +
+                                    "', N'" + txtMaNV.Text +
+                                    "', '" + DateTime.ParseExact(txtNLapHD.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") +
+                                    "', '" + txtTong.Text + "')";
+                try
+                {
+                    LopHamXuLy.runSql(sqlInsert);
+                    MessageBox.Show("THÊM THÀNH CÔNG", "XÁC NHẬN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ShowHoaDon();
+                    Reset();
+                    btnSua.Enabled = true;
+                    btnXoa.Enabled = true;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "LỖI");
+                }
+                LopHamXuLy.Disconnect();
+            }
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            panelTT.Enabled = true;
+            btnLuu.Enabled = true;
+            btnHuy.Enabled = true;
+            Reset();
+            btnXoa.Enabled = false;
+            btnSua.Enabled = false;
+        }
+        private void Sua()
+        {
+            // Kiểm tra thông tin nhập vào trước khi cập nhật
+            if (KiemTraThongTin())
+            {
+                // Kết nối đến cơ sở dữ liệu
+                LopHamXuLy.Connect();
+                // Chuẩn bị câu lệnh SQL để cập nhật hóa đơn
+                string sqlUpdate = "UPDATE HOADONXUAT SET MANV = N'" + txtMaNV.Text +
+                                   "', MAKH = N'" + txtMaKH.Text +
+                                   "', NGAYXUAT = '" + DateTime.ParseExact(txtNLapHD.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") +
+                                   "', THANHTIEN = '" + txtTong.Text +
+                                   "' WHERE MAHDX = N'" + txtMaHD.Text + "'";
+
+                try
+                {
+                    // Thực thi câu lệnh SQL để cập nhật hóa đơn
+                    LopHamXuLy.runSql(sqlUpdate);
+
+                    // Hiển thị thông báo thành công và cập nhật lại danh sách hóa đơn
+                    MessageBox.Show("CẬP NHẬT THÀNH CÔNG", "XÁC NHẬN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ShowHoaDon(); // Hàm này cần được tạo để hiển thị danh sách hóa đơn
+                    Reset(); // Hàm này cần được tạo để xóa trắng các trường nhập liệu
+                }
+                catch (Exception ex)
+                {
+                    // Hiển thị thông báo lỗi nếu có lỗi xảy ra
+                    MessageBox.Show(ex.Message, "LỖI");
+                }
+
+                // Ngắt kết nối cơ sở dữ liệu
+                LopHamXuLy.Disconnect();
+            }
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            panelTT.Enabled = true;
+            btnLuu.Enabled = true;
+            btnHuy.Enabled = true;
+            txtMaHD.Enabled = false;
+            btnThem.Enabled = false;
+            btnXoa.Enabled = false;
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            if (btnThem.Enabled)
+            {
+                Them();
+            }
+            else
+            {
+                Sua();
+            }
+            btnThem.Enabled = true;
+            btnSua.Enabled = true;
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (txtMaHD.Text == "")
+            {
+                MessageBox.Show("BẠN CHƯA CHỌN HOÁ ĐƠN CẦN XOÁ", "XÁC NHẬN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            LopHamXuLy.Connect();
+            string deleteSql = "DELETE FROM HOADONXUAT WHERE MAHDX='" + txtMaHD.Text + "'";
+            if (MessageBox.Show("BẠN CÓ CHẮC CHẮN MUỐN XOÁ HOÁ ĐƠN " + txtMaHD.Text + " KHÔNG ?", "XÁC NHẬN XOÁ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                LopHamXuLy.runSql(deleteSql);
+                MessageBox.Show("ĐÃ XOÁ THÀNH CÔNG HOÁ ĐƠN " + txtMaHD.Text, "XÁC NHẬN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ShowHoaDon();
+                Reset();
+            }
+            LopHamXuLy.Disconnect();
+        }
+        private Boolean KiemTraNhap()
+        {
+            if (txtTimMa.Text == "" && txtTimTen.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập Mã hoặc Tên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void btTim_Click(object sender, EventArgs e)
+        {
+            if (KiemTraNhap())
+            {
+                LopHamXuLy.Connect();
+                string sqlTimKiem = "SELECT * FROM HOADONXUAT";
+                string dk = "";
+
+                // Tìm theo MaSP khác rỗng
+                if (txtTimMa.Text.Trim() != "")
+                {
+                    dk += " MaHDX LIKE '%" + txtTimMa.Text + "%'";
+                }
+
+                // Kiểm tra TenSP và MaSP khác rỗng
+                if (txtTimTen.Text.Trim() != "" && dk != "")
+                {
+                    dk += " AND MAKH LIKE N'%" + txtTimTen.Text + "%'";
+                }
+
+                // Tìm kiếm theo TenSP khi MaSP là rỗng
+                if (txtTimTen.Text.Trim() != "" && dk == "")
+                {
+                    dk += " MAKH LIKE N'%" + txtTimTen.Text + "%'";
+                }
+
+                // Kết hợp điều kiện
+                if (dk != "")
+                {
+                    sqlTimKiem += " WHERE" + dk;
+                }
+                LopHamXuLy.LoadDuLieu(sqlTimKiem, dtgvHD);
+            }
         }
     }
 }

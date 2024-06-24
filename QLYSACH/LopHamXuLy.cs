@@ -20,7 +20,7 @@ namespace QLYSACH
             // Khởi tạo đối tượng kết nối
             conn = new SqlConnection();
             // Thiết lập chuỗi kết nối
-            conn.ConnectionString = "Data Source=LENOVO\\SQLEXPRESS;Initial Catalog=QLYSACH;Integrated Security=True";
+            conn.ConnectionString = @"Data Source=DESKTOP-QVLRGRF\VUDUY;Initial Catalog=QLYSACH;Integrated Security=True";
             // Mở kết nối
             conn.Open();
         }
@@ -129,7 +129,7 @@ namespace QLYSACH
             DataTable dt = new DataTable();
             da.Fill(dt);
             cbo.DataSource = dt;
-            cbo.ValueMember = ma;
+            cbo.ValueMember = ten;
             cbo.DisplayMember = ten;
         }
 
@@ -155,8 +155,8 @@ namespace QLYSACH
             DataTable dt = new DataTable();
             da.Fill(dt);
             cbo.DataSource = dt;
-            cbo.ValueMember = ma;
-            cbo.DisplayMember = ten;
+            cbo.ValueMember = ten;
+            cbo.DisplayMember = ma;
         }
 
         // Phương thức để thực hiện truy vấn không trả về kết quả
