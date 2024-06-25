@@ -373,8 +373,8 @@ namespace QLYSACH
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            Form frmM = new frmMenu();
-            frmM.Show();
+            //Form frmM = new frmMenu();
+           // frmM.Show();
             this.Close();
         }
         private void Xoa()

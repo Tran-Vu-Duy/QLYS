@@ -225,6 +225,9 @@ namespace QLYSACH
             }
             return false;
         }
+        //..
+        //..Hàm Thêm
+        //..
         private void Them()
         {
             if (KiemTraThongTin())
@@ -263,6 +266,9 @@ namespace QLYSACH
             btLuu.Enabled = true;
             btHuy.Enabled = true;
         }
+        //..
+        //..Hàm Sửa
+        //..
         private void Sua()
         {
             if (KiemTraThongTin())
@@ -302,7 +308,9 @@ namespace QLYSACH
             ShowKhachHang();
 
         }
-
+        //..
+        //..Khi chọn nút Thêm
+        //..
         private void btThem_Click(object sender, EventArgs e)
         {
             panelTT.Enabled = true;
@@ -312,6 +320,9 @@ namespace QLYSACH
             btXoa.Enabled = false;
             btSua.Enabled = false;
         }
+        //..
+        //..Khi chọn nút Lưu
+        //..
         private void btLuu_Click(object sender, EventArgs e)
         {
 
@@ -329,10 +340,13 @@ namespace QLYSACH
 
         private void btThoat_Click(object sender, EventArgs e)
         {
-            Form frmKH = new frmMenu();
-            frmKH.Show();
+            //Form frmKH = new frmMenu();
+          //  frmKH.Show();
             this.Close();
         }
+        //..
+        //..Hàm Xoá
+        //..
         private void Xoa()
         {
             if (txtMa.Text == "")
@@ -351,22 +365,17 @@ namespace QLYSACH
             }
             LopHamXuLy.Disconnect();
         }
-
+        //..
+        //..Khi chọn nút Xoá
+        //..
         private void btXoa_Click(object sender, EventArgs e)
         {
             Xoa();
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-            Reset();
-            panelTT.Enabled = false;
-            btThem.Enabled = true;
-            btXoa.Enabled = true;
-            btSua.Enabled = true;
-            txtMa.Enabled = true;
-        }
-
+        //..
+        //..Khi chọn nút Sửa
+        //..
         private void btSua_Click(object sender, EventArgs e)
         {
             panelTT.Enabled = true;
@@ -384,7 +393,9 @@ namespace QLYSACH
                 txtTen.Focus();
             }
         }
-
+        //..
+        //..Sự kiện Click vào dtgv
+        //..
         private void dtgvKH_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -408,6 +419,9 @@ namespace QLYSACH
                 }
             }
         }
+        //..
+        //..Hàm kiểm tra đã nhập tên hay mã Khách hàng cần tìm ?
+        //..
         private Boolean KiemTraNhap()
         {
             if (txtTimMa.Text == "" && txtTimTen.Text == "")
@@ -418,6 +432,9 @@ namespace QLYSACH
 
             return true;
         }
+        //..
+        //..Khi chọn nút Tìm
+        //..
         private void btTim_Click(object sender, EventArgs e)
         {
             if (KiemTraNhap())
@@ -452,14 +469,18 @@ namespace QLYSACH
                 LopHamXuLy.LoadDuLieu(sqlTimKiem,dtgvKH);
             }
         }
-
+        //..
+        //..Khi chọn nút Huỷ Tìm
+        //..
         private void btHuyTim_Click(object sender, EventArgs e)
         {
             txtTimMa.Clear();
             txtTimTen.Clear();
             ShowKhachHang();
         }
-
+        //..
+        //..Khi chọn nút Huỷ
+        //..
         private void btHuy_Click(object sender, EventArgs e)
         {
             Reset();
@@ -469,7 +490,9 @@ namespace QLYSACH
             btThem.Enabled = true;
             btXoa.Enabled = true;
         }
-
+        //..
+        //..Khi checkbox giới tính Nữ được bật
+        //..
         private void rdLocNu_CheckedChanged(object sender, EventArgs e)
         {
             LopHamXuLy.Connect();
@@ -489,7 +512,9 @@ namespace QLYSACH
             LopHamXuLy.Disconnect();   
 
         }
-
+        //..
+        //..Khi checkBox giới tính Nam đc bật
+        //..
         private void rdLocNam_CheckedChanged(object sender, EventArgs e)
         {
             LopHamXuLy.Connect();
@@ -507,19 +532,18 @@ namespace QLYSACH
             }
             LopHamXuLy.LoadDuLieu(sqlLocNam, dtgvKH);
             LopHamXuLy.Disconnect();
-
         }
-
+        //..
+        //..Khi CheckBox tất cả được bật
+        //..
         private void rdNamNu_CheckedChanged(object sender, EventArgs e)
         {
             if (rdNamNu.Checked)
             {
                 ShowKhachHang();
             }
-        }
-        
-    }
-    
+        }   
+    }   
 }
 //...Các chức năng thêm và lỗi được sửa
 //...1: Thêm chức năng lọc theo giới tính cho khách hàng
@@ -535,4 +559,5 @@ namespace QLYSACH
 //...5: Nên có cảnh báo khi chưa lưu các thay đổi đổi, lưu khi thêm mới mà đã thoát form
 //...6: Nếu nhập sai dữ liệu thì nó vẫn lưu khi chọn thoát khỏi form
 //...7: Nếu nhập sai định dạng sau khi đưa thông thì nút Lưu và Huỷ bị ẩn, chỉ hiện sau nhấn nút sửa
+//...8: ...
 

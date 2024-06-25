@@ -157,7 +157,6 @@
             this.label6.Size = new System.Drawing.Size(39, 20);
             this.label6.TabIndex = 3;
             this.label6.Text = "Huỷ";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
@@ -596,6 +595,7 @@
             this.panel4.TabIndex = 302;
             // 
             // rdNamNu
+<<<<<<< HEAD
             // 
             this.rdNamNu.AutoSize = true;
             this.rdNamNu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Italic);
@@ -639,6 +639,51 @@
             // 
             // label1
             // 
+=======
+            // 
+            this.rdNamNu.AutoSize = true;
+            this.rdNamNu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Italic);
+            this.rdNamNu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.rdNamNu.Location = new System.Drawing.Point(120, 38);
+            this.rdNamNu.Name = "rdNamNu";
+            this.rdNamNu.Size = new System.Drawing.Size(77, 24);
+            this.rdNamNu.TabIndex = 14;
+            this.rdNamNu.TabStop = true;
+            this.rdNamNu.Text = "Tất cả";
+            this.rdNamNu.UseVisualStyleBackColor = true;
+            this.rdNamNu.CheckedChanged += new System.EventHandler(this.rdNamNu_CheckedChanged);
+            // 
+            // rdLocNam
+            // 
+            this.rdLocNam.AutoSize = true;
+            this.rdLocNam.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Italic);
+            this.rdLocNam.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.rdLocNam.Location = new System.Drawing.Point(279, 38);
+            this.rdLocNam.Name = "rdLocNam";
+            this.rdLocNam.Size = new System.Drawing.Size(65, 24);
+            this.rdLocNam.TabIndex = 13;
+            this.rdLocNam.TabStop = true;
+            this.rdLocNam.Text = "Nam";
+            this.rdLocNam.UseVisualStyleBackColor = true;
+            this.rdLocNam.CheckedChanged += new System.EventHandler(this.rdLocNam_CheckedChanged);
+            // 
+            // rdLocNu
+            // 
+            this.rdLocNu.AutoSize = true;
+            this.rdLocNu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Italic);
+            this.rdLocNu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.rdLocNu.Location = new System.Drawing.Point(210, 38);
+            this.rdLocNu.Name = "rdLocNu";
+            this.rdLocNu.Size = new System.Drawing.Size(51, 24);
+            this.rdLocNu.TabIndex = 13;
+            this.rdLocNu.TabStop = true;
+            this.rdLocNu.Text = "Nữ";
+            this.rdLocNu.UseVisualStyleBackColor = true;
+            this.rdLocNu.CheckedChanged += new System.EventHandler(this.rdLocNu_CheckedChanged);
+            // 
+            // label1
+            // 
+>>>>>>> Menu
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
